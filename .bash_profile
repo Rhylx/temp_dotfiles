@@ -4,7 +4,7 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-export PATH="$PATH:$(du "$HOME/.loc/scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:$(du "$HOME/.local/scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 export EDITOR="vim"
 export TERMINAL="st"
 export READER="zathura"
