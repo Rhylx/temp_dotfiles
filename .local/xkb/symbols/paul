@@ -1,0 +1,146 @@
+partial alphanumeric_keys
+xkb_symbols "basic" {
+    name[Group1]="French (AZERTY)";
+    name[Group2]="French (AZERTY)";
+
+    include "level3(ralt_switch)"
+    //include "group(lswitch)"
+
+// Rhylx  AZERTY-Keyboard layout
+// Author : 2018, Rhylx
+// Based on the fr(azerty) layout
+
+
+// LAYOUT 0 :
+//  ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____
+// |    | Q  | W  | e  | R  | T  | Y  | U  | I  | O  | P  | L2 |
+// | TAB| q  | w  | e  | r  | t  | y  | u  | i  | o  | p  | L2 |
+// =============================================================
+// |    | A  | S  | D  | F  | G  | ;  | H  | J  | K  | L  | ^  |
+// | L1 | a  | s  | d  | f  | g  | .  | h  | j  | k  | l  | |  |
+// =============================================================
+// | ^  | Z  | X  | C  | V  | B  | N  | M  | `  | ¨  | ?  | ç  |
+// | |  | z  | x  | c  | v  | b  | n  | m  | ´  | ^  | !  | @  |
+// =============================================================
+// |    |    |    |    |    |         |    |    |    |    |    |
+// |    |    |CTRL| ENT| ESC|  SPACE  | <- | SUP| ALT|    |    |
+// =============================================================
+//
+//
+// LAYOUT 1 :
+//  ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____
+// |    |    |    |    |    |    |    |    |    |    |    |    |
+// | TAB|  # |  > |  - | 7  | 8  | 9  |LEFT|DOWN| UP |RGHT| L2 |
+// =============================================================
+// |    |    |    |    |    |    |    |    |    |    |    |  ^ |
+// | L1 |  § |  / |  $ | 4  | 5  | 6  | [  |  ( |  { |  | |  | |
+// =============================================================
+// |  ^ |    |    |    |    |    |    |    |    |    |    |    |
+// |  | |    |    | 0  | 1  | 2  | 3  | ,  |  ' | +  | &  |    |
+// =============================================================
+// |    |    |    |    |    |         |    |    |    |    |    |
+// |    |    |CTRL| ENT| ESC|  SPACE  | <- | SUP| ALT|    |    |
+// =============================================================
+//
+//
+// LAYOUT 2:
+//  ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____
+// |    |    |    |    |    |    |    |    |    |    |    |    |
+// | TAB|  % |  < |  _ | 7  | 8  | 9  |LEFT|DOWN| UP |RGHT| L2 |
+// =============================================================
+// |    |    |    |    |    |    |    |    |    |    |    |  ^ |
+// | L1 |  ~ |  \ |  $ | 4  | 5  | 6  | ]  |  ) |  } |  | |  | |
+// =============================================================
+// |  ^ |    |    |    |    |    |    |    |    |    |    |    |
+// |  | |  * | =  | 0  | 1  | 2  | 3  | :  |  " |    |    |    |
+// =============================================================
+// |    |    |    |    |    |         |    |    |    |    |    |
+// |    |    |CTRL| ENT| ESC|  SPACE  | <- | SUP| ALT|    |    |
+// =============================================================
+
+
+    // Layout 0, First row
+    key <AD01>	{ [	q,		Q             			] };
+    key <AD02>	{ [	w,		W				] };
+    key <AD03>	{ [	e,		E				] };
+    key <AD04>	{ [	r,		R				] };
+    key <AD05>	{ [	t,		T				] };
+    key <AD06>	{ [	y,		Y				] };
+    key <AD07>	{ [	u,		U				] };
+    key <AD08>	{ [	i,		I				] };
+    key <AD09>	{ [	o,		O				] };
+    key <AD10>	{ [	p,		P				] };
+
+    // Layout 0, Second row
+    key <AC01>	{ [	a,		A				] };
+    key <AC02>	{ [	s,		S				] };
+    key <AC03>	{ [	d,		D				] };
+    key <AC04>	{ [	f,		F				] };
+    key <AC05>	{ [	g,		G				] };
+    key <AB09>	{ [	period,		semicolon			] };
+    key <AC06>	{ [	h,		H				] };
+    key <AC07>	{ [	j,		J				] };
+    key <AC08>	{ [	k,		K				] };
+    key <AC09>	{ [	l,		L				] };
+
+    // Layout 0, Third row
+    key <AB01>	{ [	z,		Z				] };
+    key <AB02>	{ [	x,		X				] };
+    key <AB03>	{ [	c,		C				] };
+    key <AB04>	{ [	v,		V				] };
+    key <AB05>  { [	b,		B				] };
+    key <AB06>	{ [	n,		N				] };
+    key <AB07>	{ [	m,		M				] };
+    key <AB10>	{ [ 	dead_acute,	dead_grave			] };
+    key <TLDE>	{ [ 	dead_circumflex,dead_diaeresis			] };
+    key <AE11>	{ [	exclam,		question			] };
+    key <AE12>	{ [	at,		ccedilla			] };
+
+    // Layout 1, First row
+    key <AE01>	{ [	1,		1             			] };
+    key <AE02>	{ [	2,		2				] };
+    key <AE03>	{ [	3,		3				] };
+    key <AE04>	{ [	4,		4				] };
+    key <AE05>	{ [	5,		5				] };
+    key <AE06>	{ [	6,		6				] };
+    key <AE07>	{ [	7,		7				] };
+    key <AE08>	{ [	8,		8				] };
+    key <AE09>	{ [	9,		9				] };
+    key <AE10>	{ [	0,		0				] };
+
+    // Layout 1, Second row
+    key <KP1>	{ [	section,	section				] };
+    key <KP2>	{ [	slash,		slash				] };
+    key <KP8>	{ [	dollar,		dollar				] };
+    key <KP3>	{ [	minus,		minus				] };
+    key <AD11>	{ [	bracketleft, 	bracketleft			] };
+    key <FK24>	{ [	parenleft,	parenleft			] };
+    key <KP5>	{ [	braceleft,	braceleft			] };
+    key <KPDL>	{ [	bar,		bar				] };
+
+
+    // Layout 1, Third row
+    key <AC10>	{ [	greater,	greater				] };
+    key <KPSU>	{ [	numbersign,	numbersign			] };
+    key <AB08>	{ [	comma,		comma				] };
+    key <SCLK>	{ [	apostrophe,	apostrophe			] };
+    key <END>	{ [	plus,		plus				] };
+    key <FK19>	{ [	ampersand,	ampersand			] };
+
+
+    // Layout 2, Second row
+    key <KP7>	{ [	asciitilde,	asciitilde           		] };
+    key <BKSL>	{ [	backslash,	backslash			] };
+    key <KP9>	{ [	underscore,	underscore			] };
+    key <AD12>	{ [	bracketright,	bracketright			] };
+    key <KP0>	{ [	parenright,	parenright			] };
+    key <KP6>	{ [	braceright,	braceright			] };
+
+    // Layout 2, Third row
+    key <KP4>	{ [	equal,		equal           		] };
+    key <KPMU>	{ [	asterisk,	asterisk			] };
+    key <KPAD>	{ [	less,		less				] };
+    key <KPDV>	{ [	percent,	percent				] };
+    key <KPEQ>	{ [	colon,		colon				] };
+    key <AC11>	{ [	quotedbl,	quotedbl			] };
+};

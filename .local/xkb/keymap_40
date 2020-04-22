@@ -1,0 +1,7 @@
+xkb_keymap {
+	xkb_keycodes  { include "evdev"};
+	xkb_types     { include "complete"	};
+	xkb_compat    { include "complete_mod"	};
+	xkb_symbols   { include "pc+paul+inet(evdev)"	};
+	xkb_geometry  { include "pc(pc105)"	};
+};
