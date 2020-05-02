@@ -95,3 +95,5 @@ cmd zip ${{
 }}
 
 #Bindings
+
+map b bulkrename

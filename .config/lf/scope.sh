@@ -50,6 +50,7 @@ handle_mime() {
         video/* | audio/*|application/octet-stream) mediainfo "${FILE_PATH}" || exit 1;;
         */pdf) pdftotext -l 10 -nopgbrk -q -- "${FILE_PATH}" - ;;
         *opendocument*) odt2txt "${FILE_PATH}" ;;
+	*) highlight "${FILE_PATH}" -O ansi --force;;
     esac
 }
 
