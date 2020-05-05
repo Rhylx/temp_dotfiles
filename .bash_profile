@@ -174,3 +174,5 @@ ex=:\
 *.pdf=:\
 *.nix=:\
 "
+# Start automatically Xorg if it isn't and we are on tty1 :
+[ "$(tty)" = "/dev/tty1" ] && ! ps -e | grep -qw Xorg && exec startx
