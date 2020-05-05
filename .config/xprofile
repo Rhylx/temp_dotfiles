@@ -1,3 +1,4 @@
 #!/bin/sh
 
 remaps_kb &
+setbg	  &
