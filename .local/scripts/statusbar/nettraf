@@ -9,8 +9,8 @@ case "$BLOCK_BUTTON" in
 🔺: Traffic transmitted" ;;
 esac
 
-rxfile="${XDG_CACHE_HOME:-$HOME/.cache}/rxlog"
-txfile="${XDG_CACHE_HOME:-$HOME/.cache}/txlog"
+rxfile="${XDG_CACHE_HOME}/rxlog"
+txfile="${XDG_CACHE_HOME}/txlog"
 
 rxcurrent="$(cat /sys/class/net/*/statistics/rx_bytes | tr '\n' '+' | sed 's/+$/\n/' | bc)"
 txcurrent="$(cat /sys/class/net/*/statistics/tx_bytes | tr '\n' '+' | sed 's/+$/\n/' | bc)"
