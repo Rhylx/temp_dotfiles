@@ -1,6 +1,6 @@
 !! Xresources : to manage parameters easily for X clients apps
 
 *.alpha: 0.95
-*.font: monospace:size=14
+*.font: monospace:size=11.5
 *.background: #000000
 *.foreground: #FFFFFF
