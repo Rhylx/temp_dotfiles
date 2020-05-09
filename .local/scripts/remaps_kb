@@ -1,6 +1,6 @@
 #!/bin/sh
 
 xset r rate 350 60
-xkbcomp -i 11 -I$HOME/.local/xkb $HOME/.local/xkb/keymap $DISPLAY
-xkbcomp -I$HOME/.local/xkb $HOME/.local/xkb/keymap_40 $DISPLAY -i $(xinput list --id-only 'Paul Keyboard')
+xkbcomp -i 11 -I"${XDG_DATA_HOME}/xkb" "${XDG_DATA_HOME}/xkb/keymap" "$DISPLAY"
+xkbcomp -I"${XDG_DATA_HOME}/xkb" "${XDG_DATA_HOME}/xkb/keymap_40" "$DISPLAY" -i "$(xinput list --id-only 'Paul Keyboard')"
 
