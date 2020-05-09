@@ -3,6 +3,7 @@
 #General settings
 # set icons # icons are modified in bash_profile
 set ifs "\n"
+set shell bash
 set color256
 set scrolloff 10
 set period 1
