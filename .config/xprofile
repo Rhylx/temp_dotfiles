@@ -2,6 +2,6 @@
 
 remaps_kb &
 setbg	  &
-xrbd ${HOME}/.config/Xresources &
+xrdb ${XDG_CONFIG_HOME}/Xresources &
 xcompmgr  &
 unclutter &
