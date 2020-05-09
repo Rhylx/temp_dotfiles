@@ -6,7 +6,7 @@ set ifs "\n"
 set color256
 set scrolloff 10
 set period 1
-$lf -remote "send $id set previewer ${XDG_CONFIG_HOME:-$HOME/.config}/lf/scope.sh"
+$lf -remote "send $id set previewer ${XDG_CONFIG_HOME}/lf/scope.sh"
 
 
 # dynamically set number of columns
@@ -51,7 +51,7 @@ cmd moveto ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
 	clear; echo "Move to where?"
-	dest="$(cut -d'	' -f2- ${XDG_CONFIG_HOME:-$HOME/.config}/directories | fzf)" &&
+	dest="$(cut -d'	' -f2- ${XDG_CONFIG_HOME}/directories | fzf)" &&
 	eval mv -iv $fx $dest &&
 	notify-send "🚚 File(s) moved." "File(s) moved to $dest."
 }}
@@ -60,7 +60,7 @@ cmd copyto ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
 	clear; echo "Copy to where?"
-	dest="$(cut -d'	' -f2- ${XDG_CONFIG_HOME:-$HOME/.config}/directories | fzf)" &&
+	dest="$(cut -d'	' -f2- ${XDG_CONFIG_HOME}/directories | fzf)" &&
 	eval cp -ivr $fx $dest &&
 	notify-send "📋 File(s) copied." "File(s) copies to $dest."
 }}
