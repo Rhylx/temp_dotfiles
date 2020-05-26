@@ -1,0 +1,109 @@
+.de LI
+.LIST
+.SHIFT_LIST 10p
+..
+.AUTHOR     "\s+5Raphaël Paegelow\s0"
+.TITLE      "\s+(10Keybindings Memo\s0"
+.DOCTYPE    DEFAULT
+.COPYSTYLE  FINAL
+.PRINTSTYLE TYPESET
+.PT_SIZE    12
+.\" Make a shortcut list for each main soft used
+.START
+
+
+.HEADING 1 "Window Manager"
+.PP
+These are referring right now to \f(CWdwm\fP
+.HEADING 3 "Managing windows"
+.QUAD CENTER
+.LI
+
+.ITEM
+\f(CWMod+Enter\fP \(en Spawn terminal
+.ITEM
+\f(CWMod+q\fP \(en Close window
+.ITEM
+\f(CWMod+Q\fP \(en Close window and kills program
+.ITEM
+\f(CWMod+d\fP \(en Runs dmenu
+.ITEM
+\f(CWMod+h/j/k/l\fP \(en Move to different windows
+.ITEM
+\f(CWMod+H/J/K/L\fP \(en Move a window around
+.ITEM
+\f(CWMod+Y/U/I/O\fP \(en Resize windows
+.ITEM
+\f(CWMod+s/S\fP \(en Increase/decrease inner gaps
+.ITEM
+\f(CWMod+z/Z\fP \(en Increase/decrease outer gaps
+.ITEM
+\f(CWMod+D\fP \(en Toggle gaps
+.ITEM
+\f(CWMod+T\fP \(en Restore gaps to default
+.ITEM
+\f(CWMod+Space\fP \(en Switch focus fro
+.ITEM
+\f(CWMod+Shift+Space\fP \(en Make a window float
+.ITEM
+\f(CWMod+b\fP \(en Toggle status bar
+.ITEM
+\f(CWMod+B\fP \(en Toggle window float in bottom left corner
+.ITEM
+\f(CWMod+N\fP \(en Same as above, but for the bottom right corner.
+.LIST OFF
+.HEADING 3 "Startings softs"
+
+.HEADING 1 "Terminal emulator"
+.PP
+These are referring right now to \f(CWst\fP
+.QUAD CENTER
+.LI
+
+.ITEM
+this is an item
+.LIST OFF
+
+
+.HEADING 1 "Image viewer"
+.PP
+These are referring right now to \f(CWsxiv\fP
+.QUAD CENTER
+.LI
+
+.ITEM
+this is an item
+.LIST OFF
+
+
+.HEADING 1 "Web browser"
+.PP
+These are referring right now to \f(CWsurf\fP
+.QUAD CENTER
+.LI
+
+.ITEM
+this is an item
+.LIST OFF
+
+
+.HEADING 1 "RSS feed"
+.PP
+These are referring right now to \f(CWnewsboat\fP
+.QUAD CENTER
+.LI
+
+.ITEM
+this is an item
+.LIST OFF
+
+
+.HEADING 1 "Tabbed interface"
+.PP
+These are referring right now to \f(CWtabbed\fP
+.QUAD CENTER
+.LI
+
+.ITEM
+this is an item
+.LIST OFF
