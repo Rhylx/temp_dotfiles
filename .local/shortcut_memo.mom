@@ -24,7 +24,7 @@ These are referring right now to \f(CWdwm\fP
 .ITEM
 \f(CWMod+q\fP \(en Close window
 .ITEM
-\f(CWMod+Q\fP \(en Close window and kills program
+\f(CWMod+Q\fP \(en Close window and runs sysact (script)
 .ITEM
 \f(CWMod+d\fP \(en Runs dmenu
 .ITEM
@@ -42,17 +42,81 @@ These are referring right now to \f(CWdwm\fP
 .ITEM
 \f(CWMod+T\fP \(en Restore gaps to default
 .ITEM
-\f(CWMod+Space\fP \(en Switch focus fro
+\f(CWMod+Space\fP \(en Make a slave to master and vice-versa
 .ITEM
 \f(CWMod+Shift+Space\fP \(en Make a window float
 .ITEM
 \f(CWMod+b\fP \(en Toggle status bar
-.ITEM
-\f(CWMod+B\fP \(en Toggle window float in bottom left corner
-.ITEM
-\f(CWMod+N\fP \(en Same as above, but for the bottom right corner.
 .LIST OFF
-.HEADING 3 "Startings softs"
+.HEADING 3 "Managing Tags"
+.QUAD CENTER
+.LI
+
+.ITEM
+\f(CWMod+(Num)\fP \(en Go to that number tag
+.ITEM
+\f(CWMod+Shift+(Num)\fP \(en Send window to that tag
+.ITEM
+\f(CWMod+Tab\fP \(en Go to previous tag
+.ITEM
+\f(CWMod+g\fP \(en Go to left tag
+.ITEM
+\f(CWMod+;\fP \(en Go to right tag
+.LIST OFF
+
+.NEWPAGE
+.HEADING 3 "Starting softs"
+.QUAD CENTER
+.LI
+
+.ITEM
+\f(CWMod+r\fP \(en lf
+.ITEM
+\f(CWMod+R\fP \(en htop
+.ITEM
+\f(CWMod+e\fP \(en neomutt
+.ITEM
+\f(CWMod+m\fP \(en ncmpcpp
+.ITEM
+\f(CWMod+n\fP \(en newsboat
+.ITEM
+\f(CWMod+w\fP \(en Web Browser
+.ITEM
+\f(CWMod+W\fP \(en nmtui
+.LIST OFF
+.HEADING 3 "System"
+.QUAD CENTER
+.LI
+.ITEM
+\f(CWMod+x\fP \(en lock screen
+.ITEM
+\f(CWMod+X\fP \(en shutdown
+.ITEM
+\f(CWMod+Shift+Backspace\fP \(en reboot
+.ITEM
+\f(CWMod+F3\fP \(en Select screen/display to use
+.ITEM
+\f(CWMod+F4\fP \(en Hibernate (will ask to confirm)
+.ITEM
+\f(CWMod+F5\fP \(en Reset Network Manager
+.ITEM
+\f(CWMod+F6\fP \(en transmission torrent client (cli)
+.ITEM
+\f(CWMod+F7\fP \(en Toggle on/off transmission client
+.ITEM
+\f(CWMod+F8\fP \(en Check mail, if
+.PDF_WWW_LINK "https://github.com/lukesmithxyz/mutt-wizard" "mutt-wizard"
+is installed.
+.ITEM
+\f(CWMod+F9\fP \(en Mount a USB drive/hard drive or Android
+.ITEM
+\f(CWMod+F10\fP \(en Unmount a non-essential drive or Android
+.ITEM
+\f(CWMod+`\fP \(en Select an emoji to copy to clipboard
+.ITEM
+\f(CWMod+Insert\fP \(en Show contents of clipboard/primary selection
+.LIST OFF
+
 
 .HEADING 1 "Terminal emulator"
 .PP
