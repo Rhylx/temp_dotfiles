@@ -7,6 +7,9 @@ set -o vi
 bind '"\C-l": clear-screen'
 shopt -s autocd
 
+# Autocompletion :
+complete -cf sudo
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -31,6 +34,7 @@ bind '"\C-o":"lfcd\C-m"'
 # Aliases :
 alias ls='ls -hN --color=auto --group-directories-first'
 alias lf='lfcd'
+alias doas='doas --'
 alias work="cd ~/Reports/stage_initiation/Rapport; vim presentation.tex"
 alias cr="cabal run"
 alias sdn="sudo shutdown now"

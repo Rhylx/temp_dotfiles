@@ -7,12 +7,11 @@
 export PATH="$PATH:$(du "$HOME/.local/scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
 # General apps :
-
 export EDITOR="vim"
 export TERMINAL="st"
 export READER="zathura"
 export BROWSER="surf"
-export CLIBROWSER="w3m"
+export CLIBROWSER="lynx"
 
 # XDG paths :
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -55,7 +54,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1	# Java doesn't understand tiling windows
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 
 # Icons for lf :
-
 export LF_ICONS="\
 di=:\
 fi=:\
