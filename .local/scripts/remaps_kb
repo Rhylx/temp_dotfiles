@@ -1,6 +1,6 @@
 #!/bin/sh
 
 xset r rate 350 60
-xkbcomp -i 11 -I"${XDG_DATA_HOME}/xkb" "${XDG_DATA_HOME}/xkb/keymap" "$DISPLAY"
+xkbcomp -I"${XDG_DATA_HOME}/xkb" "${XDG_DATA_HOME}/xkb/keymap" "$DISPLAY" -i "$(xinput list --id-only 'AT Translated Set 2 keyboard')"
 xkbcomp -I"${XDG_DATA_HOME}/xkb" "${XDG_DATA_HOME}/xkb/keymap_40" "$DISPLAY" -i "$(xinput list --id-only 'Paul Keyboard')"
 
