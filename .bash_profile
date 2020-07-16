@@ -4,7 +4,7 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-export PATH="$PATH:$(du "$HOME/.local/scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:$(du "$HOME/.local/scripts" | cut -f2 | paste -sd ':')"
 
 # General apps :
 export EDITOR="vim"
@@ -213,4 +213,4 @@ ex=:\
 *.nix=:\
 "
 # Start automatically Xorg if it isn't and we are on tty1 :
-[ "$(tty)" = "/dev/tty1" ] && ! ps -A | grep -qw Xorg && exec startx
+[ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx
