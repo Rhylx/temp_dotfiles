@@ -1,5 +1,5 @@
 #!/bin/sh
 
-[ -f "${XDG_CONFIG_HOME}/xprofile" ] && . "${XDG_CONFIG_HOME}/xprofile"
+~/.xprofile
 
 ssh-agent dwm
