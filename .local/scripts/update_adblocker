@@ -1,0 +1,2 @@
+#!/bin/sh
+curl https://easylist.to/easylist/easylist.txt > "$XDG_CONFIG_HOME"/wyebadblock/easylist.txt
