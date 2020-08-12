@@ -33,6 +33,8 @@ export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/password-store"
 #export ANDROID_SDK_HOME="${XDG_CONFIG_HOME}/android"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export GOPATH="${XDG_DATA_HOME}/go"
+export LYNX_CFG="${XDG_CONFIG_HOME}/lynx/lynxrc"
+export LYNX_LSS="${XDG_CONFIG_HOME}/lynx/lynx.lss"
 #export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible/ansible.cfg"
 
 # Other program settings:
