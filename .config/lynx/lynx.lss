@@ -51,7 +51,7 @@ br:		normal:			default
 #
 #normal:normal:default:blue
 alink:		reverse:		yellow:		black
-status:		reverse:		black:		lightgray
+status:		reverse:		cyan:		default
 alert:		bold:			yellow:		red
 whereis:	reverse+underline:	magenta:	cyan
 # currently not used
