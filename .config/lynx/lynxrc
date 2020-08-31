@@ -2,7 +2,7 @@ STARTFILE:https://github.com/Rhylx
 
 HELPFILE:file:///usr/share/doc/lynx/lynx_help/lynx_help_main.html
 
-DEFAULT_INDEX_FILE:https://searx.xyz
+DEFAULT_INDEX_FILE:https://searx.xyz/
 
 LOCALE_CHARSET:TRUE
 
@@ -49,6 +49,8 @@ QUIT_DEFAULT_YES:TRUE
 SCAN_FOR_BURIED_NEWS_REFS:FALSE
 
 XLOADIMAGE_COMMAND: sxiv %s &
+
+JUMPFILE:/home/rhylx/.config/lynx/search_engines.html:I:Which search engine (? for list):
 
 #KEYMAP:0x5C:SOURCE		# Toggle source viewing mode (show HTML source)
 #KEYMAP:^R:RELOAD		# Reload the current document and redisplay
@@ -108,7 +110,7 @@ KEYMAP:O:ECGOTO			# Edit the current document's URL and go to it
 #KEYMAP:V:VLINKS		# List links visited during the current Lynx session
 #KEYMAP:!:SHELL			# Spawn default shell
 #KEYMAP:d:DOWNLOAD		# Download current link
-#KEYMAP:j:JUMP			# Jump to a predefined target
+KEYMAP:I:JUMP			# Jump to a predefined target
 #KEYMAP:k:KEYMAP		# Display the current key map
 #KEYMAP:l:LIST			# List the references (links) in the current document
 #KEYMAP:#:TOOLBAR		# Go to the Toolbar or Banner in the current document
