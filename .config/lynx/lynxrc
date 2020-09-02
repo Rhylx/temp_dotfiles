@@ -50,7 +50,7 @@ SCAN_FOR_BURIED_NEWS_REFS:FALSE
 
 XLOADIMAGE_COMMAND: sxiv %s &
 
-JUMPFILE:/home/rhylx/.config/lynx/search_engines.html:I:Which search engine (? for list):
+JUMPFILE:/home/rhylx/.config/lynx/search_engines.html:o:Which search engine (? for list):
 
 #KEYMAP:0x5C:SOURCE		# Toggle source viewing mode (show HTML source)
 #KEYMAP:^R:RELOAD		# Reload the current document and redisplay
@@ -67,7 +67,7 @@ JUMPFILE:/home/rhylx/.config/lynx/search_engines.html:I:Which search engine (? f
 #KEYMAP:):DOWN_HALF		# Move display down half a page
 #KEYMAP:^W:REFRESH		# Refresh the screen
 #KEYMAP:^A:HOME			# Go to top of current document
-#KEYMAP:g:HOME			# Keypad Home - Go to top of current document
+KEYMAP:g:HOME			# Keypad Home - Go to top of current document
 #KEYMAP:FIND_KEY:HOME		# Function key Find - Go to top of current document
 #KEYMAP:^E:END			# Go to bottom of current document
 KEYMAP:G:END			# Keypad End - Go to bottom of current document
@@ -85,7 +85,7 @@ KEYMAP:G:END			# Keypad End - Go to bottom of current document
 #KEYMAP:LTARROW:PREV_DOC	# Return to the previous document in history stack
 #KEYMAP:RTARROW:ACTIVATE	# Select the current link
 #KEYMAP:DO_KEY:ACTIVATE		# Function key Do - Select the current link
-KEYMAP:o:GOTO			# Goto a random URL
+KEYMAP:u:GOTO			# Goto a random URL
 KEYMAP:O:ECGOTO			# Edit the current document's URL and go to it
 #KEYMAP:H:HELP			# Show default help screen
 #KEYMAP:F1:DWIMHELP		# Function key Help - Show a help screen
@@ -120,8 +120,8 @@ KEYMAP:I:JUMP			# Jump to a predefined target
 #KEYMAP:[:INLINE_TOGGLE		# Toggle pseudo-ALTs for inlines with no ALT string
 #KEYMAP:]:HEAD			# Send a HEAD request for current document or link
 #*** Must be compiled with USE_EXTERNALS to enable EXTERN_LINK, EXTERN_PAGE ***
-KEYMAP:g:EXTERN_PAGE		# Run external program with current page
-#KEYMAP:.:EXTERN_LINK		# Run external program with current link
+KEYMAP:b:EXTERN_PAGE		# Run external program with current page
+KEYMAP:B:EXTERN_LINK		# Run external program with current link
 #*** Escaping from text input fields with ^V is independent from this: ***
 #KEYMAP:^V:SWITCH_DTD		# Toggle between SortaSGML and TagSoup HTML parsing
 #KEYMAP:0x00:DO_NOTHING		# Does nothing (ignore this key)
