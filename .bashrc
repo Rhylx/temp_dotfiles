@@ -31,6 +31,11 @@ lfcd () {
 # Bindings :
 bind '"\C-o":"lfcd\C-m"'
 
+# GPG and SSH :
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
 # Aliases :
 alias ls='ls -hN --color=auto --group-directories-first'
 alias lf='lfcd'
