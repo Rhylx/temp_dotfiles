@@ -35,6 +35,7 @@ bind '"\C-o":"lfcd\C-m"'
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
+echo UPDATESTARTUPTTY | gpg-connect-agent > /dev/null
 
 # Aliases :
 alias ls='ls -hN --color=auto --group-directories-first'
