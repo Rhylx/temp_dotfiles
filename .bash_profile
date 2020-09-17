@@ -6,6 +6,10 @@
 
 export PATH="$PATH:$(du "$HOME/.local/scripts" | cut -f2 | paste -sd ':')"
 
+# Extra xinput configs :
+
+xinput --set-prop 12 332 1
+
 # General apps :
 export EDITOR="vim"
 export TERMINAL="st"
