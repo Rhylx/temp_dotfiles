@@ -1,0 +1,12 @@
+## My zaturarc :
+
+# Options :
+
+set adjust-open "best-fit"
+set selection-clipboard clipboard
+set recolor false
+
+#  Shorcuts :
+
+map  <C-k> zoom in
+map  <C-j> zoom out
