@@ -1,6 +1,7 @@
 #!/bin/sh
 
 remaps_kb &
+settouchpad &
 setbg	  &
 xrdb "${XDG_CONFIG_HOME}"/Xresources &
 xcompmgr  &
