@@ -6,3 +6,4 @@ setbg	  &
 xrdb "${XDG_CONFIG_HOME}"/Xresources &
 xcompmgr  &
 unclutter &
+clipmenud &
