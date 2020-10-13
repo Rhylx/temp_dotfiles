@@ -34,13 +34,13 @@ These are referring right now to \f(CWdwm\fP
 .ITEM
 \f(CWMod+Y/U/I/O\fP \(en Resize windows
 .ITEM
-\f(CWMod+s/S\fP \(en Increase/decrease inner gaps
+\f(CWMod+z\fP \(en Increase gaps
 .ITEM
-\f(CWMod+z/Z\fP \(en Increase/decrease outer gaps
+\f(CWMod+x\fP \(en Decrease gaps
 .ITEM
-\f(CWMod+D\fP \(en Toggle gaps
+\f(CWMod+a\fP \(en Toggle gaps
 .ITEM
-\f(CWMod+T\fP \(en Restore gaps to default
+\f(CWMod+A\fP \(en Restore gaps to default
 .ITEM
 \f(CWMod+Space\fP \(en Make a slave to master and vice-versa
 .ITEM
