@@ -25,20 +25,30 @@ These are referring right now to \f(CWdwm\fP
 \f(CWMod+A\fP \(en Restore gaps to default
 .ITEM
 \f(CWMod+b\fP \(en Toggle status bar
-.\" .ITEM
-.\" \f(CWMod+B\fP \(en TO FILL
 .ITEM
 \f(CWMod+d\fP \(en Runs dmenu
-.\" .ITEM
-.\" \f(CWMod+D\fP \(en TO FILL
 .ITEM
-\f(CWMod+h/j\fP \(en Move to different windows
+\f(CWMod+f\fP \(en Fullscreen current window
 .ITEM
-\f(CWMod+H/J\fP \(en Move a window around
+\f(CWMod+h\fP \(en Resize window to the left
+.ITEM
+\f(CWMod+j/k\fP \(en Move to different windows
+.ITEM
+\f(CWMod+J/K\fP \(en Move a window around
+.ITEM
+\f(CWMod+l\fP \(en Resize window to the right
+.ITEM
+\f(CWMod+o\fP \(en Increase size of Master
+.ITEM
+\f(CWMod+O\fP \(en Decrease size of Master
 .ITEM
 \f(CWMod+q\fP \(en Close window
 .ITEM
 \f(CWMod+Q\fP \(en Close window and runs sysact (script)
+.ITEM
+\f(CWMod+s\fP \(en Toggle sticky (window is on every tag)
+.ITEM
+\f(CWMod+v\fP \(en Goes to Master
 .ITEM
 \f(CWMod+z\fP \(en Increase gaps
 .ITEM
@@ -47,11 +57,10 @@ These are referring right now to \f(CWdwm\fP
 \f(CWMod+Space\fP \(en Make a slave to master and vice-versa
 .ITEM
 \f(CWMod+Shift+Space\fP \(en Make a window float
-.\" .ITEM
-.\" \f(CWMod+Shift+Enter\fP \(en TO FILL
 .ITEM
 \f(CWMod+Enter\fP \(en Spawn terminal
 .LIST OFF
+.NEWPAGE
 .HEADING 3 "Managing Tags"
 .QUAD CENTER
 .LI
@@ -71,28 +80,41 @@ These are referring right now to \f(CWdwm\fP
 .ITEM
 \f(CWMod+Tab\fP \(en Go to previous tag
 .LIST OFF
+.HEADING 3 "Layouts"
+.QUAD CENTER
+.LI
 
-.NEWPAGE
+.ITEM
+\f(CWMod+F\fP \(en Floating Layout
+.ITEM
+\f(CWMod+i\fP \(en Centered Master
+.ITEM
+\f(CWMod+I\fP \(en Centered Floating
+.ITEM
+\f(CWMod+t\fP \(en Default
+.ITEM
+\f(CWMod+T\fP \(en Master on top, Slaves on bottom
+.ITEM
+\f(CWMod+u\fP \(en Master on left, Slaves on top of eachother
+.ITEM
+\f(CWMod+U\fP \(en All windows on top of eachother
+.ITEM
+\f(CWMod+y\fP \(en Fibonacci spiral
+.ITEM
+\f(CWMod+Y\fP \(en Decreasing in size right and leftward
+.LIST OFF
 .HEADING 3 "Starting softs"
 .QUAD CENTER
 .LI
 
 .ITEM
 \f(CWMod+e\fP \(en neomutt
-.\" .ITEM
-.\" \f(CWMod+E\fP \(en TO FILL
 .ITEM
 \f(CWMod+m\fP \(en ncmpcpp
-.\" .ITEM
-.\" \f(CWMod+M\fP \(en TO FILL
 .ITEM
 \f(CWMod+n\fP \(en newsboat
-.\" .ITEM
-.\" \f(CWMod+N\fP \(en TO FILL
 .ITEM
 \f(CWMod+r\fP \(en lf
-.\" .ITEM
-.\" \f(CWMod+R\fP \(en TO FILL
 .ITEM
 \f(CWMod+w\fP \(en Web Browser
 .ITEM
@@ -101,12 +123,19 @@ These are referring right now to \f(CWdwm\fP
 .HEADING 3 "System"
 .QUAD CENTER
 .LI
+
+.ITEM
+\f(CWMod+p\fP \(en Toggle music
 .ITEM
 \f(CWMod+x\fP \(en lock screen
 .ITEM
 \f(CWMod+X\fP \(en sysact
 .ITEM
 \f(CWMod+Shift+Backspace\fP \(en reboot
+.ITEM
+\f(CWMod+`\fP \(en Select an emoji to copy to clipboard
+.ITEM
+\f(CWMod+Insert\fP \(en Show contents of clipboard/primary selection
 .ITEM
 \f(CWMod+F3\fP \(en Select screen/display to use
 .ITEM
@@ -125,108 +154,44 @@ is installed.
 \f(CWMod+F9\fP \(en Mount a USB drive/hard drive or Android
 .ITEM
 \f(CWMod+F10\fP \(en Unmount a non-essential drive or Android
-.ITEM
-\f(CWMod+`\fP \(en Select an emoji to copy to clipboard
-.ITEM
-\f(CWMod+Insert\fP \(en Show contents of clipboard/primary selection
 .LIST OFF
 
 
-.HEADING 3 "Shortcuts to sort"
+.HEADING 3 "Shortcuts to assign"
 .QUAD CENTER
 .LI
 .ITEM
-\f(CWMod+c\fP \(en Toggle gaps
+\f(CWMod+B\fP \(en TO FILL
 .ITEM
-\f(CWMod+C\fP \(en Restore gaps to default
+\f(CWMod+c\fP \(en Free
 .ITEM
-\f(CWMod+f\fP \(en Toggle gaps
+\f(CWMod+C\fP \(en Free
 .ITEM
-\f(CWMod+F\fP \(en Restore gaps to default
+\f(CWMod+D\fP \(en Free
 .ITEM
-\f(CWMod+i\fP \(en Toggle gaps
+\f(CWMod+E\fP \(en Free
 .ITEM
-\f(CWMod+I\fP \(en Restore gaps to default
+\f(CWMod+H\fP \(en Free
 .ITEM
-\f(CWMod+k\fP \(en Toggle gaps
+\f(CWMod+L\fP \(en Free
 .ITEM
-\f(CWMod+K\fP \(en Restore gaps to default
+\f(CWMod+M\fP \(en Free
 .ITEM
-\f(CWMod+l\fP \(en Toggle gaps
+\f(CWMod+N\fP \(en Free
 .ITEM
-\f(CWMod+L\fP \(en Restore gaps to default
+\f(CWMod+P\fP \(en Free
 .ITEM
-\f(CWMod+o\fP \(en Toggle gaps
+\f(CWMod+R\fP \(en Free
 .ITEM
-\f(CWMod+O\fP \(en Restore gaps to default
+\f(CWMod+S\fP \(en Free
 .ITEM
-\f(CWMod+p\fP \(en Toggle gaps
+\f(CWMod+V\fP \(en Free
 .ITEM
-\f(CWMod+P\fP \(en Restore gaps to default
+\f(CWMod+Shift+Enter\fP \(en Free
 .ITEM
-\f(CWMod+s\fP \(en Toggle gaps
+\f(CWMod+Esc\fP \(en Free
 .ITEM
-\f(CWMod+S\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+t\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+T\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+u\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+U\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+v\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+V\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+y\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+Y\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+Esc\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+Shift+Esc\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+h\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+H\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+h\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+H\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+h\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+H\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+h\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+H\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+h\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+H\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+h\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+H\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+h\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+H\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+h\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+H\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+h\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+H\fP \(en Restore gaps to default
-.ITEM
-\f(CWMod+h\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+H\fP \(en Restore gaps to default
+\f(CWMod+Shift+Esc\fP \(en Free
 .LIST OFF
 
 .HEADING 1 "Terminal emulator"
