@@ -15,64 +15,98 @@
 .HEADING 1 "Window Manager"
 .PP
 These are referring right now to \f(CWdwm\fP
-.HEADING 3 "Managing windows"
+.HEADING 3 "Managing Windows"
 .QUAD CENTER
 .LI
 
 .ITEM
-\f(CWMod+Enter\fP \(en Spawn terminal
+\f(CWMod+a\fP \(en Toggle gaps
+.ITEM
+\f(CWMod+A\fP \(en Restore gaps to default
+.ITEM
+\f(CWMod+b\fP \(en Toggle status bar
+.ITEM
+\f(CWMod+d\fP \(en Runs dmenu
+.ITEM
+\f(CWMod+f\fP \(en Fullscreen current window
+.ITEM
+\f(CWMod+h\fP \(en Resize window to the left
+.ITEM
+\f(CWMod+j/k\fP \(en Move to different windows
+.ITEM
+\f(CWMod+J/K\fP \(en Move a window around
+.ITEM
+\f(CWMod+l\fP \(en Resize window to the right
+.ITEM
+\f(CWMod+o\fP \(en Increase size of Master
+.ITEM
+\f(CWMod+O\fP \(en Decrease size of Master
 .ITEM
 \f(CWMod+q\fP \(en Close window
 .ITEM
 \f(CWMod+Q\fP \(en Close window and runs sysact (script)
 .ITEM
-\f(CWMod+d\fP \(en Runs dmenu
+\f(CWMod+s\fP \(en Toggle sticky (window is on every tag)
 .ITEM
-\f(CWMod+h/j/k/l\fP \(en Move to different windows
+\f(CWMod+v\fP \(en Goes to Master
 .ITEM
-\f(CWMod+H/J/K/L\fP \(en Move a window around
+\f(CWMod+z\fP \(en Increase gaps
 .ITEM
-\f(CWMod+Y/U/I/O\fP \(en Resize windows
-.ITEM
-\f(CWMod+s/S\fP \(en Increase/decrease inner gaps
-.ITEM
-\f(CWMod+z/Z\fP \(en Increase/decrease outer gaps
-.ITEM
-\f(CWMod+D\fP \(en Toggle gaps
-.ITEM
-\f(CWMod+T\fP \(en Restore gaps to default
+\f(CWMod+Z\fP \(en Decrease gaps
 .ITEM
 \f(CWMod+Space\fP \(en Make a slave to master and vice-versa
 .ITEM
 \f(CWMod+Shift+Space\fP \(en Make a window float
 .ITEM
-\f(CWMod+b\fP \(en Toggle status bar
+\f(CWMod+Enter\fP \(en Spawn terminal
 .LIST OFF
+.NEWPAGE
 .HEADING 3 "Managing Tags"
 .QUAD CENTER
 .LI
 
+.ITEM
+\f(CWMod+g\fP \(en Go to left tag
+.ITEM
+\f(CWMod+G\fP \(en Move current window to left tag
+.ITEM
+\f(CWMod+.\fP \(en Go to right tag
+.ITEM
+\f(CWMod+Shift+.\fP \(en Move current window to the right tag
 .ITEM
 \f(CWMod+(Num)\fP \(en Go to that number tag
 .ITEM
 \f(CWMod+Shift+(Num)\fP \(en Send window to that tag
 .ITEM
 \f(CWMod+Tab\fP \(en Go to previous tag
-.ITEM
-\f(CWMod+g\fP \(en Go to left tag
-.ITEM
-\f(CWMod+;\fP \(en Go to right tag
 .LIST OFF
-
-.NEWPAGE
-.HEADING 3 "Starting softs"
+.HEADING 3 "Layouts"
 .QUAD CENTER
 .LI
 
 .ITEM
-\f(CWMod+r\fP \(en lf
+\f(CWMod+F\fP \(en Floating Layout
 .ITEM
-\f(CWMod+R\fP \(en htop
+\f(CWMod+i\fP \(en Centered Master
+.ITEM
+\f(CWMod+I\fP \(en Centered Floating
+.ITEM
+\f(CWMod+t\fP \(en Default
+.ITEM
+\f(CWMod+T\fP \(en Master on top, Slaves on bottom
+.ITEM
+\f(CWMod+u\fP \(en Master on left, Slaves on top of eachother
+.ITEM
+\f(CWMod+U\fP \(en All windows on top of eachother
+.ITEM
+\f(CWMod+y\fP \(en Fibonacci spiral
+.ITEM
+\f(CWMod+Y\fP \(en Decreasing in size right and leftward
+.LIST OFF
+.HEADING 3 "Starting softs"
+.QUAD CENTER
+.LI
+
 .ITEM
 \f(CWMod+e\fP \(en neomutt
 .ITEM
@@ -80,19 +114,28 @@ These are referring right now to \f(CWdwm\fP
 .ITEM
 \f(CWMod+n\fP \(en newsboat
 .ITEM
+\f(CWMod+r\fP \(en lf
+.ITEM
 \f(CWMod+w\fP \(en Web Browser
 .ITEM
-\f(CWMod+W\fP \(en nmtui
+\f(CWMod+W\fP \(en Graphical Web Browser
 .LIST OFF
 .HEADING 3 "System"
 .QUAD CENTER
 .LI
+
+.ITEM
+\f(CWMod+p\fP \(en Toggle music
 .ITEM
 \f(CWMod+x\fP \(en lock screen
 .ITEM
-\f(CWMod+X\fP \(en shutdown
+\f(CWMod+X\fP \(en sysact
 .ITEM
 \f(CWMod+Shift+Backspace\fP \(en reboot
+.ITEM
+\f(CWMod+`\fP \(en Select an emoji to copy to clipboard
+.ITEM
+\f(CWMod+Insert\fP \(en Show contents of clipboard/primary selection
 .ITEM
 \f(CWMod+F3\fP \(en Select screen/display to use
 .ITEM
@@ -111,12 +154,45 @@ is installed.
 \f(CWMod+F9\fP \(en Mount a USB drive/hard drive or Android
 .ITEM
 \f(CWMod+F10\fP \(en Unmount a non-essential drive or Android
-.ITEM
-\f(CWMod+`\fP \(en Select an emoji to copy to clipboard
-.ITEM
-\f(CWMod+Insert\fP \(en Show contents of clipboard/primary selection
 .LIST OFF
 
+
+.HEADING 3 "Shortcuts to assign"
+.QUAD CENTER
+.LI
+.ITEM
+\f(CWMod+B\fP \(en TO FILL
+.ITEM
+\f(CWMod+c\fP \(en Free
+.ITEM
+\f(CWMod+C\fP \(en Free
+.ITEM
+\f(CWMod+D\fP \(en Free
+.ITEM
+\f(CWMod+E\fP \(en Free
+.ITEM
+\f(CWMod+H\fP \(en Free
+.ITEM
+\f(CWMod+L\fP \(en Free
+.ITEM
+\f(CWMod+M\fP \(en Free
+.ITEM
+\f(CWMod+N\fP \(en Free
+.ITEM
+\f(CWMod+P\fP \(en Free
+.ITEM
+\f(CWMod+R\fP \(en Free
+.ITEM
+\f(CWMod+S\fP \(en Free
+.ITEM
+\f(CWMod+V\fP \(en Free
+.ITEM
+\f(CWMod+Shift+Enter\fP \(en Free
+.ITEM
+\f(CWMod+Esc\fP \(en Free
+.ITEM
+\f(CWMod+Shift+Esc\fP \(en Free
+.LIST OFF
 
 .HEADING 1 "Terminal emulator"
 .PP
