@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Output locations. Unactivated progs should go to /dev/null.
+shell_shortcuts="${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc"
+lf_shortcuts="${XDG_CONFIG_HOME:-$HOME/.config}/lf/shortcuts.conf"
+b_shortcuts="/dev/null"
+gb_shortcuts="/dev/null"
+
+# Remove, prepare files
+rm -f "$shell_shortcuts" "$lf_shortcuts" "$b_shortcuts" "$gb_shortcuts" 2>/dev/null
+# printf "# vim: filetype=sh\\n" > "$fish_shortcuts"
+# printf "# vim: filetype=sh\\nalias " > "$shell_shortcuts"
+# printf "\" vim: filetype=vim\\n" > "$vifm_shortcuts"
+
+# Format the `directories` file in the correct syntax and sent it to all configs.
+eval "echo \"$(cat "${XDG_CONFIG_HOME:-$HOME/.config}/directories")\"" | \
+awk "!/^\s*#/ && !/^\s*\$/ {gsub(\"\\\s*#.*$\",\"\");
+    printf(\"%s=\42cd %s && ls -a\42 \\\\\n\",\$1,\$2)   >> \"$shell_shortcuts\" ;
+    printf(\"map g%s cd %s\nmap t%s tab_new %s\nmap m%s shell mv -v %%s %s\nmap Y%s shell cp -rv %%s %s \n\",\$1,\$2,\$1,\$2, \$1, \$2, \$1, \$2) >> \"$lf_shortcuts\" ;
+    printf(\"config.bind(';%s', \42set downloads.location.directory %s ;; hint links download\42) \n\",\$1,\$2) >> \"$b_shortcuts\" }"
+
+# Format the `files` file in the correct syntax and sent it to configs.
+eval "echo \"$(cat "${XDG_CONFIG_HOME:-$HOME/.config}/files")\"" | \
+awk "!/^\s*#/ && !/^\s*\$/ {gsub(\"\\\s*#.*$\",\"\");
+    printf(\"%s=\42\$EDITOR %s\42 \\\\\n\",\$1,\$2)  >> \"$shell_shortcuts\" ;
+	printf(\"map %s shell \$EDITOR %s \n\",\$1,\$2)  >> \"$lf_shortcuts\" ;
+	printf(\"map %s shell \$EDITOR %s \n\",\$1,\$2)  >> \"$b_shortcuts\" ;
+	printf(\"map %s shell \$EDITOR %s \n\",\$1,\$2)  >> \"$gb_shortcuts\" }"
