@@ -108,6 +108,10 @@ These are referring right now to \f(CWdwm\fP
 .LI
 
 .ITEM
+\f(CWMod+c\fP \(en scratchpad 0 (just a terminal)
+.ITEM
+\f(CWMod+C\fP \(en scratchpad 1 (for computations)
+.ITEM
 \f(CWMod+e\fP \(en neomutt
 .ITEM
 \f(CWMod+m\fP \(en ncmpcpp
@@ -162,10 +166,6 @@ is installed.
 .LI
 .ITEM
 \f(CWMod+B\fP \(en Free
-.ITEM
-\f(CWMod+c\fP \(en Free
-.ITEM
-\f(CWMod+C\fP \(en Free
 .ITEM
 \f(CWMod+D\fP \(en Free
 .ITEM
