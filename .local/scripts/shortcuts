@@ -13,14 +13,14 @@ rm -f "$shell_shortcuts" "$lf_shortcuts" "$b_shortcuts" "$gb_shortcuts" 2>/dev/n
 # printf "\" vim: filetype=vim\\n" > "$vifm_shortcuts"
 
 # Format the `directories` file in the correct syntax and sent it to all configs.
-eval "echo \"$(cat "${XDG_CONFIG_HOME:-$HOME/.config}/directories")\"" | \
+eval "echo \"$(cat "${XDG_CONFIG_HOME}/directories")\"" | \
 awk "!/^\s*#/ && !/^\s*\$/ {gsub(\"\\\s*#.*$\",\"\");
     printf(\"%s=\42cd %s && ls -a\42 \\\\\n\",\$1,\$2)   >> \"$shell_shortcuts\" ;
     printf(\"map g%s cd %s\nmap t%s tab_new %s\nmap m%s shell mv -v %%s %s\nmap Y%s shell cp -rv %%s %s \n\",\$1,\$2,\$1,\$2, \$1, \$2, \$1, \$2) >> \"$lf_shortcuts\" ;
     printf(\"config.bind(';%s', \42set downloads.location.directory %s ;; hint links download\42) \n\",\$1,\$2) >> \"$b_shortcuts\" }"
 
 # Format the `files` file in the correct syntax and sent it to configs.
-eval "echo \"$(cat "${XDG_CONFIG_HOME:-$HOME/.config}/files")\"" | \
+eval "echo \"$(cat "${XDG_CONFIG_HOME}/cfiles")\"" | \
 awk "!/^\s*#/ && !/^\s*\$/ {gsub(\"\\\s*#.*$\",\"\");
     printf(\"%s=\42\$EDITOR %s\42 \\\\\n\",\$1,\$2)  >> \"$shell_shortcuts\" ;
 	printf(\"map %s shell \$EDITOR %s \n\",\$1,\$2)  >> \"$lf_shortcuts\" ;
