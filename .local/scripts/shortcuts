@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Output locations. Unactivated progs should go to /dev/null.
-shell_shortcuts="${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc"
-lf_shortcuts="${XDG_CONFIG_HOME:-$HOME/.config}/lf/shortcuts.conf"
-b_shortcuts="/dev/null"
-gb_shortcuts="/dev/null"
+shell_shortcuts="${XDG_CONFIG_HOME}/shortcutrc"
+lf_shortcuts="${XDG_CONFIG_HOME}/lf/shortcuts.conf"
+b_shortcuts="${XDG_CONFIG_HOME}/lynx/shortcuts.conf"
+gb_shortcuts="${XDG_CONFIG_HOME}/vimb/shortcuts.conf"
 
 # Remove, prepare files
 rm -f "$shell_shortcuts" "$lf_shortcuts" "$b_shortcuts" "$gb_shortcuts" 2>/dev/null
