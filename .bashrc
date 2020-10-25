@@ -10,8 +10,11 @@ shopt -s autocd
 # Autocompletion :
 complete -cf sudo
 
-# If not running interactively, don't do anything
+# If not running interactively, don't do anything :
 [[ $- != *i* ]] && return
+
+# Source shortcuts :
+[ -f "${XDG_CONFIG_HOME}/shortcutrc" ] && source "${XDG_CONFIG_HOME}/shortcutrc"
 
 # Prompt config :
 PS1='[\u@\h \W]\$ '
