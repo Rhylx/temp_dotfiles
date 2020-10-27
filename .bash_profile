@@ -230,7 +230,7 @@ ex=:\
 
 
 # Generate shortcuts if file shortcutrc doesn't already exist
-[ ! -f ${XDG_CONFIG_HOME}/shortcutrc ] && shortcuts >/dev/null 2>&1 &
+[ ! -f "${XDG_CONFIG_HOME}/shortcutrc" ] && shortcuts >/dev/null 2>&1 &
 
 # Start automatically Xorg if it isn't and we are on tty1 :
 [ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx
