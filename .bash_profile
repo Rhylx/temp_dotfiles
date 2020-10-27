@@ -69,7 +69,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1	# Java doesn't understand tiling windows
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 
 # Icons for lf :
-export LF_ICONS="di=📁:\
+export LF_ICONS="di=🗀 :\
 fi=📃:\
 tw=🤝:\
 ow=📂:\
