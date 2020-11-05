@@ -24,7 +24,7 @@ COOKIE_FILE:~/.config/lynx/lynx_cookies
 
 COOKIE_SAVE_FILE:~/.config/lynx/lynx_cookies
 
-EXTERNAL::vimb %s &:TRUE
+EXTERNAL::$GBROWSER %s &:TRUE
 
 VI_KEYS_ALWAYS_ON:TRUE
 

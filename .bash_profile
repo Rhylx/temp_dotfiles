@@ -14,8 +14,8 @@ xinput --set-prop 12 332 1
 export EDITOR="vim"
 export TERMINAL="st"
 export READER="zathura"
-export BROWSER="surf"
-export CLIBROWSER="lynx"
+export BROWSER="lynx"
+export GBROWSER="qutebrowser"
 
 # XDG paths :
 export XDG_CONFIG_HOME="$HOME/.config"
