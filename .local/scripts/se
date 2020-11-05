@@ -1,2 +1,3 @@
 #!/bin/sh
-lynx "www.searx.xyz/?q=$*"
+
+lynx -cfg=~/Desktop/temp_dotfiles/.config/lynx/lynxrc https://searx.xyz/?q="$*"
