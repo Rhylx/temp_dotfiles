@@ -2,7 +2,7 @@ STARTFILE:https://github.com/Rhylx
 
 HELPFILE:file:///usr/share/doc/lynx/lynx_help/lynx_help_main.html
 
-DEFAULT_INDEX_FILE:https://searx.xyz/
+DEFAULT_INDEX_FILE:https://searx.rpaegelow.xyz/
 
 LOCALE_CHARSET:TRUE
 
