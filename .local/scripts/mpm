@@ -35,6 +35,6 @@ open_error() {
 }
 sudo swapoff -a
 pass open 2>/dev/null || open_error
-extract_key "$1"
+extract_key "$@"
 pass close 2>/dev/null || echo "Tomb hasn't been closed properly"
 sudo swapon -a
