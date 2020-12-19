@@ -4,51 +4,523 @@
 ##   qute://help/configuring.html
 ##   qute://help/settings.html
 
-## This is here so configs done via the GUI are still loaded.
-## Remove it to not load settings done via the GUI.
-# config.load_autoconfig()
 
-## Aliases for commands. The keys of the given dictionary are the
-## aliases, while the values are the commands they map to.
-## Type: Dict
-# c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save', 'wqa': 'quit --save'}
+##########################################################################################
+#Main config
+##########################################################################################
 
-## Time interval (in milliseconds) between auto-saves of
-## config/cookies/etc.
-## Type: Int
-# c.auto_save.interval = 15000
-
-## Always restore open sites when qutebrowser is reopened. Without this
-## option set, `:wq` (`:quit --save`) needs to be used to save open tabs
-## (and restore them), while quitting qutebrowser in any other way will
-## not save/restore the session. By default, this will save to the
-## session which was last loaded. This behavior can be customized via the
-## `session.default_name` setting.
+## Always restore open sites when qutebrowser is reopened.
 ## Type: Bool
-# c.auto_save.session = False
+c.auto_save.session = False
 
 ## Backend to use to display websites. qutebrowser supports two different
-## web rendering engines / backends, QtWebKit and QtWebEngine. QtWebKit
-## was discontinued by the Qt project with Qt 5.6, but picked up as a
-## well maintained fork: https://github.com/annulen/webkit/wiki -
-## qutebrowser only supports the fork. QtWebEngine is Qt's official
-## successor to QtWebKit. It's slightly more resource hungry than
-## QtWebKit and has a couple of missing features in qutebrowser, but is
-## generally the preferred choice.
+## web rendering engines / backends, QtWebKit and QtWebEngine.
+## Type: String
+c.backend = 'webengine'
+
+## Number of commands to save in the command history. 0: no history / -1:
+## unlimited
+## Type: Int
+c.completion.cmd_history_max_items = 5
+
+## Which categories to show (in which order) in the :open completion.
+## Type: FlagList
+## Valid values:
+##   - searchengines
+##   - quickmarks
+##   - bookmarks
+##   - history
+c.completion.open_categories = ['history']
+
+## Width (in pixels) of the scrollbar in the completion window.
+## Type: Int
+c.completion.scrollbar.width = 0
+
+## When to show the autocompletion window.
 ## Type: String
 ## Valid values:
-##   - webengine: Use QtWebEngine (based on Chromium).
-##   - webkit: Use QtWebKit (based on WebKit, similar to Safari).
-# c.backend = 'webengine'
+##   - always: Whenever a completion is available.
+##   - auto: Whenever a completion is requested.
+##   - never: Never.
+c.completion.show = 'auto'
 
-## This setting can be used to map keys to other keys. When the key used
-## as dictionary-key is pressed, the binding for the key used as
-## dictionary-value is invoked instead. This is useful for global
-## remappings of keys, for example to map Ctrl-[ to Escape. Note that
-## when a key is bound (via `bindings.default` or `bindings.commands`),
-## the mapping is ignored.
+## Shrink the completion to be smaller than the configured size if there
+## are no scrollbars.
+## Type: Bool
+# c.completion.shrink = False
+
+## Format of timestamps (e.g. for the history completion).
+## Python to format its timestamps.
+## Type: String
+c.completion.timestamp_format = '%d-%m-%Y %H:%M'
+
+## Require a confirmation before quitting the application.
+## Type: ConfirmQuit
+## Valid values:
+##   - always: Always show a confirmation.
+##   - multiple-tabs: Show a confirmation if multiple tabs are opened.
+##   - downloads: Show a confirmation if downloads are running
+##   - never: Never show a confirmation.
+c.confirm_quit = ['never']
+
+## Automatically start playing `<video>` elements.
+## Type: Bool
+c.content.autoplay = False
+
+## Enable support for the HTML 5 web application cache feature.
+## Type: Bool
+c.content.cache.appcache = True
+
+## Maximum number of pages to hold in the global memory page cache.
+## Type: Int
+c.content.cache.maximum_pages = 0
+
+## Size (in bytes) of the HTTP network cache.
+## Type: Int
+c.content.cache.size = None
+
+## Allow websites to read canvas elements.
+## Type: Bool
+c.content.canvas_reading = True
+
+## Default encoding to use for websites. The encoding must be a string
+## describing an encoding such as _utf-8_, _iso-8859-1_, etc.
+## Type: String
+c.content.default_encoding = 'iso-8859-1'
+
+## Enable hyperlink auditing (`<a ping>`).
+## Type: Bool
+c.content.hyperlink_auditing = False
+
+## Load images automatically in web pages.
+## Type: Bool
+c.content.images = True
+
+## Show javascript alerts.
+## Type: Bool
+c.content.javascript.alert = True
+
+## Allow JavaScript to read from or write to the clipboard.
+## Type: Bool
+c.content.javascript.can_access_clipboard = False
+
+## Allow pdf.js to view PDF files in the browser. Note that the files can
+## still be downloaded by clicking the download button in the pdf.js
+## viewer.
+## Type: Bool
+# c.content.pdfjs = False
+
+## Enable WebGL.
+## Type: Bool
+# c.content.webgl = True
+
+## Monitor load requests for cross-site scripting attempts. Suspicious
+## scripts will be blocked and reported in the devtools JavaScript
+## console. Note that bypasses for the XSS auditor are widely known and
+## it can be abused for cross-site info leaks in some scenarios, see:
+## https://www.chromium.org/developers/design-documents/xss-auditor
+## Type: Bool
+# c.content.xss_auditing = False
+
+##########################################################################################
+#Privacy
+##########################################################################################
+
+## Which cookies to accept. With QtWebEngine, this setting also controls
+## other features with tracking capabilities similar to those of cookies;
+## including IndexedDB, DOM storage, filesystem API, service workers, and
+## AppCache. Note that with QtWebKit, only `all` and `never` are
+## supported as per-domain values. Setting `no-3rdparty` or `no-
+## unknown-3rdparty` per-domain on QtWebKit will have the same effect as
+## `all`. If this setting is used with URL patterns, the pattern gets
+## applied to the origin/first party URL of the page making the request,
+## not the request URL.
+## Type: String
+## Valid values:
+##   - all: Accept all cookies.
+##   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
+##   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
+##   - never: Don't accept cookies at all.
+c.content.cookies.accept = 'no-3rdparty'
+
+## Store cookies.
+## Type: Bool
+c.content.cookies.store = False
+
+## Allow websites to share screen content. On Qt < 5.10, a dialog box is
+## always displayed, even if this is set to "true".
+## Type: BoolAsk
+## Valid values:
+##   - true
+##   - false
+##   - ask
+#c.content.desktop_capture = 'ask'
+
+## Allow websites to request geolocations.
+## Type: BoolAsk
+## Valid values:
+##   - true
+##   - false
+##   - ask
+#c.content.geolocation = 'ask'
+
+## Allow websites to record audio.
+## Type: BoolAsk
+## Valid values:
+##   - true
+##   - false
+##   - ask
+#c.content.media.audio_capture = 'ask'
+
+## Allow websites to record audio and video.
+## Type: BoolAsk
+## Valid values:
+##   - true
+##   - false
+##   - ask
+# c.content.media.audio_video_capture = 'ask'
+
+## Allow websites to record video.
+## Type: BoolAsk
+## Valid values:
+##   - true
+##   - false
+##   - ask
+# c.content.media.video_capture = 'ask'
+
+## Allow websites to lock your mouse pointer.
+## Type: BoolAsk
+## Valid values:
+##   - true
+##   - false
+##   - ask
+# c.content.mouse_lock = 'ask'
+
+## Allow websites to show notifications.
+## Type: BoolAsk
+## Valid values:
+##   - true
+##   - false
+##   - ask
+# c.content.notifications = 'ask'
+
+## Allow websites to request persistent storage quota via
+## `navigator.webkitPersistentStorage.requestQuota`.
+## Type: BoolAsk
+## Valid values:
+##   - true
+##   - false
+##   - ask
+# c.content.persistent_storage = 'ask'
+
+## Value to send in the `Accept-Language` header. Note that the value
+## read from JavaScript is always the global value.
+## Type: String
+c.content.headers.accept_language = 'en-US,en;q=0.9'
+
+## Custom headers for qutebrowser HTTP requests.
 ## Type: Dict
-# c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>', '<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Ctrl-I>': '<Tab>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
+# c.content.headers.custom = {}
+
+## Value to send in the `DNT` header. When this is set to true,
+## qutebrowser asks websites to not track your identity. If set to null,
+## the DNT header is not sent at all.
+## Type: Bool
+c.content.headers.do_not_track = True
+
+## When to send the Referer header. The Referer header tells websites
+## from which website you were coming from when visiting them. No restart
+## is needed with QtWebKit.
+## Type: String
+## Valid values:
+##   - always: Always send the Referer.
+##   - never: Never send the Referer. This is not recommended, as some sites may break.
+##   - same-domain: Only send the Referer for the same domain. This will still protect your privacy, but shouldn't break any sites. With QtWebEngine, the referer will still be sent for other domains, but with stripped path information.
+c.content.headers.referer = 'same-domain'
+
+## User agent to send.  The following placeholders are defined:  *
+## `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
+## The underlying WebKit version (set to a fixed value   with
+## QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
+## QtWebEngine. * `{qt_version}`: The underlying Qt version. *
+## `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
+## QtWebEngine. * `{upstream_browser_version}`: The corresponding
+## Safari/Chrome version. * `{qutebrowser_version}`: The currently
+## running qutebrowser version.  The default value is equal to the
+## unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
+## read from JavaScript is always the global value. With QtWebEngine
+## between 5.12 and 5.14 (inclusive), changing the value exposed to
+## JavaScript requires a restart.
+## Type: FormatString
+# c.content.headers.user_agent = 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}'
+
+## Enable host blocking.
+## Type: Bool
+c.content.host_blocking.enabled = True
+
+## List of URLs of lists which contain hosts to block.  The file can be
+## in one of the following formats:  - An `/etc/hosts`-like file - One
+## host per line - A zip-file of any of the above, with either only one
+## file, or a file   named `hosts` (with any extension).  It's also
+## possible to add a local file or directory via a `file://` URL. In case
+## of a directory, all files in the directory are read as adblock lists.
+## The file `~/.config/qutebrowser/blocked-hosts` is always read if it
+## exists.
+## Type: List of Url
+c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+
+## Enable plugins in Web pages.
+## Type: Bool
+# c.content.plugins = False
+
+## Open new windows in private browsing mode which does not record
+## visited pages.
+## Type: Bool
+# c.content.private_browsing = False
+
+## Proxy to use. In addition to the listed values, you can use a
+## `socks://...` or `http://...` URL. Note that with QtWebEngine, it will
+## take a couple of seconds until the change is applied, if this value is
+## changed at runtime.
+## Type: Proxy
+## Valid values:
+##   - system: Use the system wide proxy.
+##   - none: Don't use any proxy
+# c.content.proxy = 'system'
+
+## Send DNS requests over the configured proxy.
+## Type: Bool
+# c.content.proxy_dns_requests = True
+
+## Allow websites to register protocol handlers via
+## `navigator.registerProtocolHandler`.
+## Type: BoolAsk
+## Valid values:
+##   - true
+##   - false
+##   - ask
+# c.content.register_protocol_handler = 'ask'
+
+## Enable quirks (such as faked user agent headers) needed to get
+## specific sites to work properly.
+## Type: Bool
+# c.content.site_specific_quirks = True
+
+## Validate SSL handshakes.
+## Type: BoolAsk
+## Valid values:
+##   - true
+##   - false
+##   - ask
+# c.content.ssl_strict = 'ask'
+
+## How navigation requests to URLs with unknown schemes are handled.
+## Type: String
+## Valid values:
+##   - disallow: Disallows all navigation requests to URLs with unknown schemes.
+##   - allow-from-user-interaction: Allows navigation requests to URLs with unknown schemes that are issued from user-interaction (like a mouse-click), whereas other navigation requests (for example from JavaScript) are suppressed.
+##   - allow-all: Allows all navigation requests to URLs with unknown schemes.
+# c.content.unknown_url_scheme_policy = 'allow-from-user-interaction'
+
+## Which interfaces to expose via WebRTC. On Qt 5.10, this option doesn't
+## work because of a Qt bug.
+## Type: String
+## Valid values:
+##   - all-interfaces: WebRTC has the right to enumerate all interfaces and bind them to discover public interfaces.
+##   - default-public-and-private-interfaces: WebRTC should only use the default route used by http. This also exposes the associated default private address. Default route is the route chosen by the OS on a multi-homed endpoint.
+##   - default-public-interface-only: WebRTC should only use the default route used by http. This doesn't expose any local addresses.
+##   - disable-non-proxied-udp: WebRTC should only use TCP to contact peers or servers unless the proxy server supports UDP. This doesn't expose any local addresses either.
+# c.content.webrtc_ip_handling_policy = 'all-interfaces'
+
+## Directory to save downloads to. If unset, a sensible OS-specific
+## default is used.
+## Type: Directory
+# c.downloads.location.directory = None
+
+## Prompt the user for the download location. If set to false,
+## `downloads.location.directory` will be used.
+## Type: Bool
+# c.downloads.location.prompt = True
+
+## Remember the last used download directory.
+## Type: Bool
+c.downloads.location.remember = False
+
+## What to display in the download filename input.
+## Type: String
+## Valid values:
+##   - path: Show only the download path.
+##   - filename: Show only download filename.
+##   - both: Show download path and filename.
+c.downloads.location.suggestion = 'filename'
+
+## Default program used to open downloads. If null, the default internal
+## handler is used. Any `{}` in the string will be expanded to the
+## filename, else the filename will be appended.
+## Type: String
+# c.downloads.open_dispatcher = None
+
+## Where to show the downloaded files.
+## Type: VerticalPosition
+## Valid values:
+##   - top
+##   - bottom
+# c.downloads.position = 'top'
+
+## Duration (in milliseconds) to wait before removing finished downloads.
+## If set to -1, downloads are never removed.
+## Type: Int
+c.downloads.remove_finished = 60000
+
+## Editor (and arguments) to use for the `open-editor` command. The
+## following placeholders are defined:  * `{file}`: Filename of the file
+## to be edited. * `{line}`: Line in which the caret is found in the
+## text. * `{column}`: Column in which the caret is found in the text. *
+## `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
+## Same as `{column}`, but starting from index 0.
+## Type: ShellCommand
+c.editor.command = ['vim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
+
+## Encoding to use for the editor.
+## Type: Encoding
+# c.editor.encoding = 'utf-8'
+
+## When a hint can be automatically followed without pressing Enter.
+## Type: String
+## Valid values:
+##   - always: Auto-follow whenever there is only a single hint on a page.
+##   - unique-match: Auto-follow whenever there is a unique non-empty match in either the hint string (word mode) or filter (number mode).
+##   - full-match: Follow the hint when the user typed the whole hint (letter, word or number mode) or the element's text (only in number mode).
+##   - never: The user will always need to press Enter to follow a hint.
+# c.hints.auto_follow = 'unique-match'
+
+## Duration (in milliseconds) to ignore normal-mode key bindings after a
+## successful auto-follow.
+## Type: Int
+# c.hints.auto_follow_timeout = 0
+
+## Characters used for hint strings.
+## Type: UniqueCharString
+# c.hints.chars = 'asdfghjkl'
+
+## Dictionary file to be used by the word hints.
+## Type: File
+# c.hints.dictionary = '/usr/share/dict/words'
+
+## Which implementation to use to find elements to hint.
+## Type: String
+## Valid values:
+##   - javascript: Better but slower
+##   - python: Slightly worse but faster
+# c.hints.find_implementation = 'python'
+
+## Hide unmatched hints in rapid mode.
+## Type: Bool
+# c.hints.hide_unmatched_rapid_hints = True
+
+## Leave hint mode when starting a new page load.
+## Type: Bool
+# c.hints.leave_on_load = True
+
+## Minimum number of characters used for hint strings.
+## Type: Int
+# c.hints.min_chars = 1
+
+## Mode to use for hints.
+## Type: String
+## Valid values:
+##   - number: Use numeric hints. (In this mode you can also type letters from the hinted element to filter and reduce the number of elements that are hinted.)
+##   - letter: Use the characters in the `hints.chars` setting.
+##   - word: Use hints words based on the html elements and the extra words.
+# c.hints.mode = 'letter'
+
+## Comma-separated list of regular expressions to use for 'next' links.
+## Type: List of Regex
+# c.hints.next_regexes = ['\\bnext\\b', '\\bmore\\b', '\\bnewer\\b', '\\b[>→≫]\\b', '\\b(>>|»)\\b', '\\bcontinue\\b']
+
+## Comma-separated list of regular expressions to use for 'prev' links.
+## Type: List of Regex
+# c.hints.prev_regexes = ['\\bprev(ious)?\\b', '\\bback\\b', '\\bolder\\b', '\\b[<←≪]\\b', '\\b(<<|«)\\b']
+
+## Scatter hint key chains (like Vimium) or not (like dwb). Ignored for
+## number hints.
+## Type: Bool
+# c.hints.scatter = True
+
+## CSS selectors used to determine which elements on a page should have
+## hints.
+## Type: Dict
+# c.hints.selectors = {'all': ['a', 'area', 'textarea', 'select', 'input:not([type="hidden"])', 'button', 'frame', 'iframe', 'img', 'link', 'summary', '[contenteditable]:not([contenteditable="false"])', '[onclick]', '[onmousedown]', '[role="link"]', '[role="option"]', '[role="button"]', '[ng-click]', '[ngClick]', '[data-ng-click]', '[x-ng-click]', '[tabindex]'], 'links': ['a[href]', 'area[href]', 'link[href]', '[role="link"][href]'], 'images': ['img'], 'media': ['audio', 'img', 'video'], 'url': ['[src]', '[href]'], 'inputs': ['input[type="text"]', 'input[type="date"]', 'input[type="datetime-local"]', 'input[type="email"]', 'input[type="month"]', 'input[type="number"]', 'input[type="password"]', 'input[type="search"]', 'input[type="tel"]', 'input[type="time"]', 'input[type="url"]', 'input[type="week"]', 'input:not([type])', '[contenteditable]:not([contenteditable="false"])', 'textarea']}
+
+## Which unbound keys to forward to the webview in normal mode.
+## Type: String
+## Valid values:
+##   - all: Forward all unbound keys.
+##   - auto: Forward unbound non-alphanumeric keys.
+##   - none: Don't forward any keys.
+# c.input.forward_unbound_keys = 'auto'
+
+## Automatically enter insert mode if an editable element is focused
+## after loading the page.
+## Type: Bool
+# c.input.insert_mode.auto_load = False
+
+## Leave insert mode when starting a new page load. Patterns may be
+## unreliable on this setting, and they may match the url you are
+## navigating to, or the URL you are navigating from.
+## Type: Bool
+# c.input.insert_mode.leave_on_load = True
+
+## Include hyperlinks in the keyboard focus chain when tabbing.
+## Type: Bool
+# c.input.links_included_in_focus_chain = True
+
+## Timeout (in milliseconds) for partially typed key bindings. If the
+## current input forms only partial matches, the keystring will be
+## cleared after this time.
+## Type: Int
+# c.input.partial_timeout = 5000
+
+## Enable spatial navigation. Spatial navigation consists in the ability
+## to navigate between focusable elements in a Web page, such as
+## hyperlinks and form controls, by using Left, Right, Up and Down arrow
+## keys. For example, if the user presses the Right key, heuristics
+## determine whether there is an element he might be trying to reach
+## towards the right and which element he probably wants.
+## Type: Bool
+c.input.spatial_navigation = False
+
+## Level for console (stdout/stderr) logs. Ignored if the `--loglevel` or
+## `--debug` CLI flags are used.
+## Type: LogLevel
+## Valid values:
+##   - vdebug
+##   - debug
+##   - info
+##   - warning
+##   - error
+##   - critical
+# c.logging.level.console = 'info'
+
+## Level for in-memory logs.
+## Type: LogLevel
+## Valid values:
+##   - vdebug
+##   - debug
+##   - info
+##   - warning
+##   - error
+##   - critical
+# c.logging.level.ram = 'debug'
+
+## Duration (in milliseconds) to show messages in the statusbar for. Set
+## to 0 to never clear messages.
+## Type: Int
+# c.messages.timeout = 2000
+
+##########################################################################################
+#Esthetics
+##########################################################################################
 
 ## Background color of the completion widget category headers.
 ## Type: QssColor
@@ -529,514 +1001,63 @@
 ## Type: Bool
 # c.colors.webpage.prefers_color_scheme_dark = False
 
-## Number of commands to save in the command history. 0: no history / -1:
-## unlimited
-## Type: Int
-# c.completion.cmd_history_max_items = 100
-
-## Delay (in milliseconds) before updating completions after typing a
-## character.
-## Type: Int
-# c.completion.delay = 0
-
-## Height (in pixels or as percentage of the window) of the completion.
-## Type: PercOrInt
-# c.completion.height = '50%'
-
-## Minimum amount of characters needed to update completions.
-## Type: Int
-# c.completion.min_chars = 1
-
-## Which categories to show (in which order) in the :open completion.
-## Type: FlagList
-## Valid values:
-##   - searchengines
-##   - quickmarks
-##   - bookmarks
-##   - history
-# c.completion.open_categories = ['searchengines', 'quickmarks', 'bookmarks', 'history']
-
-## Move on to the next part when there's only one possible completion
-## left.
-## Type: Bool
-# c.completion.quick = True
-
-## Padding (in pixels) of the scrollbar handle in the completion window.
-## Type: Int
-# c.completion.scrollbar.padding = 2
-
-## Width (in pixels) of the scrollbar in the completion window.
-## Type: Int
-# c.completion.scrollbar.width = 12
-
-## When to show the autocompletion window.
-## Type: String
-## Valid values:
-##   - always: Whenever a completion is available.
-##   - auto: Whenever a completion is requested.
-##   - never: Never.
-# c.completion.show = 'always'
-
-## Shrink the completion to be smaller than the configured size if there
-## are no scrollbars.
-## Type: Bool
-# c.completion.shrink = False
-
-## Format of timestamps (e.g. for the history completion). See
-## https://sqlite.org/lang_datefunc.html and
-## https://docs.python.org/3/library/datetime.html#strftime-strptime-
-## behavior for allowed substitutions, qutebrowser uses both sqlite and
-## Python to format its timestamps.
-## Type: String
-# c.completion.timestamp_format = '%Y-%m-%d %H:%M'
-
-## Execute the best-matching command on a partial match.
-## Type: Bool
-# c.completion.use_best_match = False
-
-## A list of patterns which should not be shown in the history. This only
-## affects the completion. Matching URLs are still saved in the history
-## (and visible on the qute://history page), but hidden in the
-## completion. Changing this setting will cause the completion history to
-## be regenerated on the next start, which will take a short while.
-## Type: List of UrlPattern
-# c.completion.web_history.exclude = []
-
-## Number of URLs to show in the web history. 0: no history / -1:
-## unlimited
-## Type: Int
-# c.completion.web_history.max_items = -1
-
-## Require a confirmation before quitting the application.
-## Type: ConfirmQuit
-## Valid values:
-##   - always: Always show a confirmation.
-##   - multiple-tabs: Show a confirmation if multiple tabs are opened.
-##   - downloads: Show a confirmation if downloads are running
-##   - never: Never show a confirmation.
-# c.confirm_quit = ['never']
-
-## Automatically start playing `<video>` elements. Note: On Qt < 5.11,
-## this option needs a restart and does not support URL patterns.
-## Type: Bool
-# c.content.autoplay = True
-
-## Enable support for the HTML 5 web application cache feature. An
-## application cache acts like an HTTP cache in some sense. For documents
-## that use the application cache via JavaScript, the loader engine will
-## first ask the application cache for the contents, before hitting the
-## network.
-## Type: Bool
-# c.content.cache.appcache = True
-
-## Maximum number of pages to hold in the global memory page cache. The
-## page cache allows for a nicer user experience when navigating forth or
-## back to pages in the forward/back history, by pausing and resuming up
-## to _n_ pages. For more information about the feature, please refer to:
-## http://webkit.org/blog/427/webkit-page-cache-i-the-basics/
-## Type: Int
-# c.content.cache.maximum_pages = 0
-
-## Size (in bytes) of the HTTP network cache. Null to use the default
-## value. With QtWebEngine, the maximum supported value is 2147483647 (~2
-## GB).
-## Type: Int
-# c.content.cache.size = None
-
-## Allow websites to read canvas elements. Note this is needed for some
-## websites to work properly.
-## Type: Bool
-# c.content.canvas_reading = True
-
-## Which cookies to accept. With QtWebEngine, this setting also controls
-## other features with tracking capabilities similar to those of cookies;
-## including IndexedDB, DOM storage, filesystem API, service workers, and
-## AppCache. Note that with QtWebKit, only `all` and `never` are
-## supported as per-domain values. Setting `no-3rdparty` or `no-
-## unknown-3rdparty` per-domain on QtWebKit will have the same effect as
-## `all`. If this setting is used with URL patterns, the pattern gets
-## applied to the origin/first party URL of the page making the request,
-## not the request URL.
-## Type: String
-## Valid values:
-##   - all: Accept all cookies.
-##   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
-##   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
-##   - never: Don't accept cookies at all.
-# c.content.cookies.accept = 'all'
-
-## Store cookies. Note this option needs a restart with QtWebEngine on Qt
-## < 5.9.
-## Type: Bool
-# c.content.cookies.store = True
-
-## Default encoding to use for websites. The encoding must be a string
-## describing an encoding such as _utf-8_, _iso-8859-1_, etc.
-## Type: String
-# c.content.default_encoding = 'iso-8859-1'
-
-## Allow websites to share screen content. On Qt < 5.10, a dialog box is
-## always displayed, even if this is set to "true".
-## Type: BoolAsk
-## Valid values:
-##   - true
-##   - false
-##   - ask
-# c.content.desktop_capture = 'ask'
-
-## Try to pre-fetch DNS entries to speed up browsing.
-## Type: Bool
-# c.content.dns_prefetch = True
-
-## Expand each subframe to its contents. This will flatten all the frames
-## to become one scrollable page.
-## Type: Bool
-# c.content.frame_flattening = False
-
-## Set fullscreen notification overlay timeout in milliseconds. If set to
-## 0, no overlay will be displayed.
-## Type: Int
-# c.content.fullscreen.overlay_timeout = 3000
-
-## Limit fullscreen to the browser window (does not expand to fill the
-## screen).
-## Type: Bool
-# c.content.fullscreen.window = False
-
-## Allow websites to request geolocations.
-## Type: BoolAsk
-## Valid values:
-##   - true
-##   - false
-##   - ask
-# c.content.geolocation = 'ask'
-
-## Value to send in the `Accept-Language` header. Note that the value
-## read from JavaScript is always the global value.
-## Type: String
-# c.content.headers.accept_language = 'en-US,en;q=0.9'
-
-## Custom headers for qutebrowser HTTP requests.
-## Type: Dict
-# c.content.headers.custom = {}
-
-## Value to send in the `DNT` header. When this is set to true,
-## qutebrowser asks websites to not track your identity. If set to null,
-## the DNT header is not sent at all.
-## Type: Bool
-# c.content.headers.do_not_track = True
-
-## When to send the Referer header. The Referer header tells websites
-## from which website you were coming from when visiting them. No restart
-## is needed with QtWebKit.
-## Type: String
-## Valid values:
-##   - always: Always send the Referer.
-##   - never: Never send the Referer. This is not recommended, as some sites may break.
-##   - same-domain: Only send the Referer for the same domain. This will still protect your privacy, but shouldn't break any sites. With QtWebEngine, the referer will still be sent for other domains, but with stripped path information.
-# c.content.headers.referer = 'same-domain'
-
-## User agent to send.  The following placeholders are defined:  *
-## `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
-## The underlying WebKit version (set to a fixed value   with
-## QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
-## QtWebEngine. * `{qt_version}`: The underlying Qt version. *
-## `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
-## QtWebEngine. * `{upstream_browser_version}`: The corresponding
-## Safari/Chrome version. * `{qutebrowser_version}`: The currently
-## running qutebrowser version.  The default value is equal to the
-## unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-## read from JavaScript is always the global value. With QtWebEngine
-## between 5.12 and 5.14 (inclusive), changing the value exposed to
-## JavaScript requires a restart.
-## Type: FormatString
-# c.content.headers.user_agent = 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}'
-
-## Enable host blocking.
-## Type: Bool
-# c.content.host_blocking.enabled = True
-
-## List of URLs of lists which contain hosts to block.  The file can be
-## in one of the following formats:  - An `/etc/hosts`-like file - One
-## host per line - A zip-file of any of the above, with either only one
-## file, or a file   named `hosts` (with any extension).  It's also
-## possible to add a local file or directory via a `file://` URL. In case
-## of a directory, all files in the directory are read as adblock lists.
-## The file `~/.config/qutebrowser/blocked-hosts` is always read if it
-## exists.
-## Type: List of Url
-# c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
-
-## A list of patterns that should always be loaded, despite being ad-
-## blocked. Note this whitelists blocked hosts, not first-party URLs. As
-## an example, if `example.org` loads an ad from `ads.example.org`, the
-## whitelisted host should be `ads.example.org`. If you want to disable
-## the adblocker on a given page, use the `content.host_blocking.enabled`
-## setting with a URL pattern instead. Local domains are always exempt
-## from hostblocking.
-## Type: List of UrlPattern
-# c.content.host_blocking.whitelist = []
-
-## Enable hyperlink auditing (`<a ping>`).
-## Type: Bool
-# c.content.hyperlink_auditing = False
-
-## Load images automatically in web pages.
-## Type: Bool
-# c.content.images = True
-
-## Show javascript alerts.
-## Type: Bool
-# c.content.javascript.alert = True
-
-## Allow JavaScript to read from or write to the clipboard. With
-## QtWebEngine, writing the clipboard as response to a user interaction
-## is always allowed.
-## Type: Bool
-# c.content.javascript.can_access_clipboard = False
-
-## Allow JavaScript to close tabs.
-## Type: Bool
-# c.content.javascript.can_close_tabs = False
-
-## Allow JavaScript to open new tabs without user interaction.
-## Type: Bool
-# c.content.javascript.can_open_tabs_automatically = False
-
-## Enable JavaScript.
-## Type: Bool
-# c.content.javascript.enabled = True
-
-## Log levels to use for JavaScript console logging messages. When a
-## JavaScript message with the level given in the dictionary key is
-## logged, the corresponding dictionary value selects the qutebrowser
-## logger to use. On QtWebKit, the "unknown" setting is always used. The
-## following levels are valid: `none`, `debug`, `info`, `warning`,
-## `error`.
-## Type: Dict
-# c.content.javascript.log = {'unknown': 'debug', 'info': 'debug', 'warning': 'debug', 'error': 'debug'}
-
-## Use the standard JavaScript modal dialog for `alert()` and
-## `confirm()`.
-## Type: Bool
-# c.content.javascript.modal_dialog = False
-
-## Show javascript prompts.
-## Type: Bool
-# c.content.javascript.prompt = True
-
-## Allow locally loaded documents to access other local URLs.
-## Type: Bool
-# c.content.local_content_can_access_file_urls = True
-
-## Allow locally loaded documents to access remote URLs.
-## Type: Bool
-# c.content.local_content_can_access_remote_urls = False
-
-## Enable support for HTML 5 local storage and Web SQL.
-## Type: Bool
-# c.content.local_storage = True
-
-## Allow websites to record audio.
-## Type: BoolAsk
-## Valid values:
-##   - true
-##   - false
-##   - ask
-# c.content.media.audio_capture = 'ask'
-
-## Allow websites to record audio and video.
-## Type: BoolAsk
-## Valid values:
-##   - true
-##   - false
-##   - ask
-# c.content.media.audio_video_capture = 'ask'
-
-## Allow websites to record video.
-## Type: BoolAsk
-## Valid values:
-##   - true
-##   - false
-##   - ask
-# c.content.media.video_capture = 'ask'
-
-## Allow websites to lock your mouse pointer.
-## Type: BoolAsk
-## Valid values:
-##   - true
-##   - false
-##   - ask
-# c.content.mouse_lock = 'ask'
-
-## Automatically mute tabs. Note that if the `:tab-mute` command is used,
-## the mute status for the affected tab is now controlled manually, and
-## this setting doesn't have any effect.
-## Type: Bool
-# c.content.mute = False
-
-## Netrc-file for HTTP authentication. If unset, `~/.netrc` is used.
-## Type: File
-# c.content.netrc_file = None
-
-## Allow websites to show notifications.
-## Type: BoolAsk
-## Valid values:
-##   - true
-##   - false
-##   - ask
-# c.content.notifications = 'ask'
-
-## Allow pdf.js to view PDF files in the browser. Note that the files can
-## still be downloaded by clicking the download button in the pdf.js
-## viewer.
-## Type: Bool
-# c.content.pdfjs = False
-
-## Allow websites to request persistent storage quota via
-## `navigator.webkitPersistentStorage.requestQuota`.
-## Type: BoolAsk
-## Valid values:
-##   - true
-##   - false
-##   - ask
-# c.content.persistent_storage = 'ask'
-
-## Enable plugins in Web pages.
-## Type: Bool
-# c.content.plugins = False
-
 ## Draw the background color and images also when the page is printed.
 ## Type: Bool
 # c.content.print_element_backgrounds = True
-
-## Open new windows in private browsing mode which does not record
-## visited pages.
-## Type: Bool
-# c.content.private_browsing = False
-
-## Proxy to use. In addition to the listed values, you can use a
-## `socks://...` or `http://...` URL. Note that with QtWebEngine, it will
-## take a couple of seconds until the change is applied, if this value is
-## changed at runtime.
-## Type: Proxy
-## Valid values:
-##   - system: Use the system wide proxy.
-##   - none: Don't use any proxy
-# c.content.proxy = 'system'
-
-## Send DNS requests over the configured proxy.
-## Type: Bool
-# c.content.proxy_dns_requests = True
-
-## Allow websites to register protocol handlers via
-## `navigator.registerProtocolHandler`.
-## Type: BoolAsk
-## Valid values:
-##   - true
-##   - false
-##   - ask
-# c.content.register_protocol_handler = 'ask'
-
-## Enable quirks (such as faked user agent headers) needed to get
-## specific sites to work properly.
-## Type: Bool
-# c.content.site_specific_quirks = True
-
-## Validate SSL handshakes.
-## Type: BoolAsk
-## Valid values:
-##   - true
-##   - false
-##   - ask
-# c.content.ssl_strict = 'ask'
-
-## How navigation requests to URLs with unknown schemes are handled.
-## Type: String
-## Valid values:
-##   - disallow: Disallows all navigation requests to URLs with unknown schemes.
-##   - allow-from-user-interaction: Allows navigation requests to URLs with unknown schemes that are issued from user-interaction (like a mouse-click), whereas other navigation requests (for example from JavaScript) are suppressed.
-##   - allow-all: Allows all navigation requests to URLs with unknown schemes.
-# c.content.unknown_url_scheme_policy = 'allow-from-user-interaction'
 
 ## List of user stylesheet filenames to use.
 ## Type: List of File, or File
 # c.content.user_stylesheets = []
 
-## Enable WebGL.
-## Type: Bool
-# c.content.webgl = True
+## Font used in the completion categories.
+## Type: Font
+# c.fonts.completion.category = 'bold default_size default_family'
 
-## Which interfaces to expose via WebRTC. On Qt 5.10, this option doesn't
-## work because of a Qt bug.
+## Font used in the completion widget.
+## Type: Font
+# c.fonts.completion.entry = 'default_size default_family'
+
+## Font used for the context menu. If set to null, the Qt default is
+## used.
+## Type: Font
+# c.fonts.contextmenu = None
+
+## Font used for the debugging console.
+## Type: Font
+# c.fonts.debug_console = 'default_size default_family'
+
+## Default font families to use. Whenever "default_family" is used in a
+## font setting, it's replaced with the fonts listed here. If set to an
+## empty value, a system-specific monospace default is used.
+## Type: List of Font, or Font
+# c.fonts.default_family = []
+
+## Default font size to use. Whenever "default_size" is used in a font
+## setting, it's replaced with the size listed here. Valid values are
+## either a float value with a "pt" suffix, or an integer value with a
+## "px" suffix.
 ## Type: String
-## Valid values:
-##   - all-interfaces: WebRTC has the right to enumerate all interfaces and bind them to discover public interfaces.
-##   - default-public-and-private-interfaces: WebRTC should only use the default route used by http. This also exposes the associated default private address. Default route is the route chosen by the OS on a multi-homed endpoint.
-##   - default-public-interface-only: WebRTC should only use the default route used by http. This doesn't expose any local addresses.
-##   - disable-non-proxied-udp: WebRTC should only use TCP to contact peers or servers unless the proxy server supports UDP. This doesn't expose any local addresses either.
-# c.content.webrtc_ip_handling_policy = 'all-interfaces'
+# c.fonts.default_size = '10pt'
 
-## Monitor load requests for cross-site scripting attempts. Suspicious
-## scripts will be blocked and reported in the devtools JavaScript
-## console. Note that bypasses for the XSS auditor are widely known and
-## it can be abused for cross-site info leaks in some scenarios, see:
-## https://www.chromium.org/developers/design-documents/xss-auditor
-## Type: Bool
-# c.content.xss_auditing = False
+## Font used for the downloadbar.
+## Type: Font
+# c.fonts.downloads = 'default_size default_family'
 
-## Directory to save downloads to. If unset, a sensible OS-specific
-## default is used.
-## Type: Directory
-# c.downloads.location.directory = None
+## Font used for the hints.
+## Type: Font
+# c.fonts.hints = 'bold default_size default_family'
 
-## Prompt the user for the download location. If set to false,
-## `downloads.location.directory` will be used.
-## Type: Bool
-# c.downloads.location.prompt = True
+## Font used in the keyhint widget.
+## Type: Font
+# c.fonts.keyhint = 'default_size default_family'
 
-## Remember the last used download directory.
-## Type: Bool
-# c.downloads.location.remember = True
+## Font used for error messages.
+## Type: Font
+# c.fonts.messages.error = 'default_size default_family'
 
-## What to display in the download filename input.
-## Type: String
-## Valid values:
-##   - path: Show only the download path.
-##   - filename: Show only download filename.
-##   - both: Show download path and filename.
-# c.downloads.location.suggestion = 'path'
-
-## Default program used to open downloads. If null, the default internal
-## handler is used. Any `{}` in the string will be expanded to the
-## filename, else the filename will be appended.
-## Type: String
-# c.downloads.open_dispatcher = None
-
-## Where to show the downloaded files.
-## Type: VerticalPosition
-## Valid values:
-##   - top
-##   - bottom
-# c.downloads.position = 'top'
-
-## Duration (in milliseconds) to wait before removing finished downloads.
-## If set to -1, downloads are never removed.
-## Type: Int
-# c.downloads.remove_finished = -1
-
-## Editor (and arguments) to use for the `open-editor` command. The
-## following placeholders are defined:  * `{file}`: Filename of the file
-## to be edited. * `{line}`: Line in which the caret is found in the
-## text. * `{column}`: Column in which the caret is found in the text. *
-## `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
-## Same as `{column}`, but starting from index 0.
-## Type: ShellCommand
-# c.editor.command = ['gvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
-
-## Encoding to use for the editor.
-## Type: Encoding
-# c.editor.encoding = 'utf-8'
+## Font used for info messages.
+## Type: Font
+# c.fonts.messages.info = 'default_size default_family'
 
 ## Font used in the completion categories.
 ## Type: Font
@@ -1149,201 +1170,35 @@
 ## Type: Int
 # c.fonts.web.size.minimum_logical = 6
 
-## When a hint can be automatically followed without pressing Enter.
-## Type: String
-## Valid values:
-##   - always: Auto-follow whenever there is only a single hint on a page.
-##   - unique-match: Auto-follow whenever there is a unique non-empty match in either the hint string (word mode) or filter (number mode).
-##   - full-match: Follow the hint when the user typed the whole hint (letter, word or number mode) or the element's text (only in number mode).
-##   - never: The user will always need to press Enter to follow a hint.
-# c.hints.auto_follow = 'unique-match'
-
-## Duration (in milliseconds) to ignore normal-mode key bindings after a
-## successful auto-follow.
-## Type: Int
-# c.hints.auto_follow_timeout = 0
-
 ## CSS border value for hints.
 ## Type: String
 # c.hints.border = '1px solid #E3BE23'
-
-## Characters used for hint strings.
-## Type: UniqueCharString
-# c.hints.chars = 'asdfghjkl'
-
-## Dictionary file to be used by the word hints.
-## Type: File
-# c.hints.dictionary = '/usr/share/dict/words'
-
-## Which implementation to use to find elements to hint.
-## Type: String
-## Valid values:
-##   - javascript: Better but slower
-##   - python: Slightly worse but faster
-# c.hints.find_implementation = 'python'
-
-## Hide unmatched hints in rapid mode.
-## Type: Bool
-# c.hints.hide_unmatched_rapid_hints = True
-
-## Leave hint mode when starting a new page load.
-## Type: Bool
-# c.hints.leave_on_load = True
-
-## Minimum number of characters used for hint strings.
-## Type: Int
-# c.hints.min_chars = 1
-
-## Mode to use for hints.
-## Type: String
-## Valid values:
-##   - number: Use numeric hints. (In this mode you can also type letters from the hinted element to filter and reduce the number of elements that are hinted.)
-##   - letter: Use the characters in the `hints.chars` setting.
-##   - word: Use hints words based on the html elements and the extra words.
-# c.hints.mode = 'letter'
-
-## Comma-separated list of regular expressions to use for 'next' links.
-## Type: List of Regex
-# c.hints.next_regexes = ['\\bnext\\b', '\\bmore\\b', '\\bnewer\\b', '\\b[>→≫]\\b', '\\b(>>|»)\\b', '\\bcontinue\\b']
 
 ## Padding (in pixels) for hints.
 ## Type: Padding
 # c.hints.padding = {'top': 0, 'bottom': 0, 'left': 3, 'right': 3}
 
-## Comma-separated list of regular expressions to use for 'prev' links.
-## Type: List of Regex
-# c.hints.prev_regexes = ['\\bprev(ious)?\\b', '\\bback\\b', '\\bolder\\b', '\\b[<←≪]\\b', '\\b(<<|«)\\b']
-
 ## Rounding radius (in pixels) for the edges of hints.
 ## Type: Int
 # c.hints.radius = 3
-
-## Scatter hint key chains (like Vimium) or not (like dwb). Ignored for
-## number hints.
-## Type: Bool
-# c.hints.scatter = True
-
-## CSS selectors used to determine which elements on a page should have
-## hints.
-## Type: Dict
-# c.hints.selectors = {'all': ['a', 'area', 'textarea', 'select', 'input:not([type="hidden"])', 'button', 'frame', 'iframe', 'img', 'link', 'summary', '[contenteditable]:not([contenteditable="false"])', '[onclick]', '[onmousedown]', '[role="link"]', '[role="option"]', '[role="button"]', '[ng-click]', '[ngClick]', '[data-ng-click]', '[x-ng-click]', '[tabindex]'], 'links': ['a[href]', 'area[href]', 'link[href]', '[role="link"][href]'], 'images': ['img'], 'media': ['audio', 'img', 'video'], 'url': ['[src]', '[href]'], 'inputs': ['input[type="text"]', 'input[type="date"]', 'input[type="datetime-local"]', 'input[type="email"]', 'input[type="month"]', 'input[type="number"]', 'input[type="password"]', 'input[type="search"]', 'input[type="tel"]', 'input[type="time"]', 'input[type="url"]', 'input[type="week"]', 'input:not([type])', '[contenteditable]:not([contenteditable="false"])', 'textarea']}
-
-## Make characters in hint strings uppercase.
-## Type: Bool
-# c.hints.uppercase = False
-
-## Maximum time (in minutes) between two history items for them to be
-## considered being from the same browsing session. Items with less time
-## between them are grouped when being displayed in `:history`. Use -1 to
-## disable separation.
-## Type: Int
-# c.history_gap_interval = 30
-
-## Allow Escape to quit the crash reporter.
-## Type: Bool
-# c.input.escape_quits_reporter = True
-
-## Which unbound keys to forward to the webview in normal mode.
-## Type: String
-## Valid values:
-##   - all: Forward all unbound keys.
-##   - auto: Forward unbound non-alphanumeric keys.
-##   - none: Don't forward any keys.
-# c.input.forward_unbound_keys = 'auto'
-
-## Enter insert mode if an editable element is clicked.
-## Type: Bool
-# c.input.insert_mode.auto_enter = True
-
-## Leave insert mode if a non-editable element is clicked.
-## Type: Bool
-# c.input.insert_mode.auto_leave = True
-
-## Automatically enter insert mode if an editable element is focused
-## after loading the page.
-## Type: Bool
-# c.input.insert_mode.auto_load = False
-
-## Leave insert mode when starting a new page load. Patterns may be
-## unreliable on this setting, and they may match the url you are
-## navigating to, or the URL you are navigating from.
-## Type: Bool
-# c.input.insert_mode.leave_on_load = True
-
-## Switch to insert mode when clicking flash and other plugins.
-## Type: Bool
-# c.input.insert_mode.plugins = False
-
-## Include hyperlinks in the keyboard focus chain when tabbing.
-## Type: Bool
-# c.input.links_included_in_focus_chain = True
-
-## Enable back and forward buttons on the mouse.
-## Type: Bool
-# c.input.mouse.back_forward_buttons = True
-
-## Enable Opera-like mouse rocker gestures. This disables the context
-## menu.
-## Type: Bool
-# c.input.mouse.rocker_gestures = False
-
-## Timeout (in milliseconds) for partially typed key bindings. If the
-## current input forms only partial matches, the keystring will be
-## cleared after this time.
-## Type: Int
-# c.input.partial_timeout = 5000
-
-## Enable spatial navigation. Spatial navigation consists in the ability
-## to navigate between focusable elements in a Web page, such as
-## hyperlinks and form controls, by using Left, Right, Up and Down arrow
-## keys. For example, if the user presses the Right key, heuristics
-## determine whether there is an element he might be trying to reach
-## towards the right and which element he probably wants.
-## Type: Bool
-# c.input.spatial_navigation = False
-
-## Keychains that shouldn't be shown in the keyhint dialog. Globs are
-## supported, so `;*` will blacklist all keychains starting with `;`. Use
-## `*` to disable keyhints.
-## Type: List of String
-# c.keyhint.blacklist = []
-
-## Time (in milliseconds) from pressing a key to seeing the keyhint
-## dialog.
-## Type: Int
-# c.keyhint.delay = 500
 
 ## Rounding radius (in pixels) for the edges of the keyhint dialog.
 ## Type: Int
 # c.keyhint.radius = 6
 
-## Level for console (stdout/stderr) logs. Ignored if the `--loglevel` or
-## `--debug` CLI flags are used.
-## Type: LogLevel
-## Valid values:
-##   - vdebug
-##   - debug
-##   - info
-##   - warning
-##   - error
-##   - critical
-# c.logging.level.console = 'info'
+##########################################################################################
+#Bindings
+##########################################################################################
 
-## Level for in-memory logs.
-## Type: LogLevel
-## Valid values:
-##   - vdebug
-##   - debug
-##   - info
-##   - warning
-##   - error
-##   - critical
-# c.logging.level.ram = 'debug'
+## Aliases for commands. The keys of the given dictionary are the
+## aliases, while the values are the commands they map to.
+## Type: Dict
+c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save', 'wqa': 'quit --save'}
 
-## Duration (in milliseconds) to show messages in the statusbar for. Set
-## to 0 to never clear messages.
-## Type: Int
-# c.messages.timeout = 2000
+## This setting can be used to map keys to other keys.
+## Type: Dict
+# c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>', '<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Ctrl-I>': '<Tab>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
+
 
 ## How to open links in an existing instance if a new one is launched.
 ## This happens when e.g. opening a link from a terminal. See
