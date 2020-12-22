@@ -122,6 +122,314 @@ c.content.javascript.can_access_clipboard = False
 ## Type: Bool
 # c.content.xss_auditing = False
 
+## How to open links in an existing instance if a new one is launched.
+## This happens when e.g. opening a link from a terminal. See
+## `new_instance_open_target_window` to customize in which window the
+## link is opened in.
+## Type: String
+## Valid values:
+##   - tab: Open a new tab in the existing window and activate the window.
+##   - tab-bg: Open a new background tab in the existing window and activate the window.
+##   - tab-silent: Open a new tab in the existing window without activating the window.
+##   - tab-bg-silent: Open a new background tab in the existing window without activating the window.
+##   - window: Open in a new window.
+##   - private-window: Open in a new private window.
+# c.new_instance_open_target = 'tab'
+
+## Which window to choose when opening links as new tabs. When
+## `new_instance_open_target` is set to `window`, this is ignored.
+## Type: String
+## Valid values:
+##   - first-opened: Open new tabs in the first (oldest) opened window.
+##   - last-opened: Open new tabs in the last (newest) opened window.
+##   - last-focused: Open new tabs in the most recently focused window.
+##   - last-visible: Open new tabs in the most recently visible window.
+# c.new_instance_open_target_window = 'last-focused'
+
+## Show a filebrowser in download prompts.
+## Type: Bool
+# c.prompt.filebrowser = True
+
+## Additional arguments to pass to Qt, without leading `--`. With
+## QtWebEngine, some Chromium arguments (see
+## https://peter.sh/experiments/chromium-command-line-switches/ for a
+## list) will work.
+## Type: List of String
+# c.qt.args = []
+
+## Force software rendering for QtWebEngine. This is needed for
+## QtWebEngine to work with Nouveau drivers and can be useful in other
+## scenarios related to graphic issues.
+## Type: String
+## Valid values:
+##   - software-opengl: Tell LibGL to use a software implementation of GL (`LIBGL_ALWAYS_SOFTWARE` / `QT_XCB_FORCE_SOFTWARE_OPENGL`)
+##   - qt-quick: Tell Qt Quick to use a software renderer instead of OpenGL. (`QT_QUICK_BACKEND=software`)
+##   - chromium: Tell Chromium to disable GPU support and use Skia software rendering instead. (`--disable-gpu`)
+##   - none: Don't force software rendering.
+# c.qt.force_software_rendering = 'none'
+
+## Turn on Qt HighDPI scaling. This is equivalent to setting
+## QT_AUTO_SCREEN_SCALE_FACTOR=1 or QT_ENABLE_HIGHDPI_SCALING=1 (Qt >=
+## 5.14) in the environment. It's off by default as it can cause issues
+## with some bitmap fonts. As an alternative to this, it's possible to
+## set font sizes and the `zoom.default` setting.
+## Type: Bool
+# c.qt.highdpi = False
+
+## When to use Chromium's low-end device mode. This improves the RAM
+## usage of renderer processes, at the expense of performance.
+## Type: String
+## Valid values:
+##   - always: Always use low-end device mode.
+##   - auto: Decide automatically (uses low-end mode with < 1 GB available RAM).
+##   - never: Never use low-end device mode.
+# c.qt.low_end_device_mode = 'auto'
+
+## When/how to show the scrollbar.
+## Type: String
+## Valid values:
+##   - always: Always show the scrollbar.
+##   - never: Never show the scrollbar.
+##   - when-searching: Show the scrollbar when searching for text in the webpage. With the QtWebKit backend, this is equal to `never`.
+##   - overlay: Show an overlay scrollbar. With Qt < 5.11 or on macOS, this is unavailable and equal to `when-searching`; with the QtWebKit backend, this is equal to `never`. Enabling/disabling overlay scrollbars requires a restart.
+c.scrolling.bar = 'never'
+
+## Enable smooth scrolling for web pages. Note smooth scrolling does not
+## work with the `:scroll-px` command.
+## Type: Bool
+c.scrolling.smooth = True
+
+## When to find text on a page case-insensitively.
+## Type: IgnoreCase
+## Valid values:
+##   - always: Search case-insensitively.
+##   - never: Search case-sensitively.
+##   - smart: Search case-sensitively if there are capital characters.
+# c.search.ignore_case = 'smart'
+
+## Find text on a page incrementally, renewing the search for each typed
+## character.
+## Type: Bool
+# c.search.incremental = True
+
+## Load a restored tab as soon as it takes focus.
+## Type: Bool
+# c.session.lazy_restore = False
+
+## Position of the status bar.
+## Type: VerticalPosition
+## Valid values:
+##   - top
+##   - bottom
+# c.statusbar.position = 'bottom'
+
+## When to show the statusbar.
+## Type: String
+## Valid values:
+##   - always: Always show the statusbar.
+##   - never: Always hide the statusbar.
+##   - in-mode: Show the statusbar when in modes other than normal mode.
+c.statusbar.show = 'in-mode'
+
+## List of widgets displayed in the statusbar.
+## Type: List of String
+## Valid values:
+##   - url: Current page URL.
+##   - scroll: Percentage of the current page position like `10%`.
+##   - scroll_raw: Raw percentage of the current page position like `10`.
+##   - history: Display an arrow when possible to go back/forward in history.
+##   - tabs: Current active tab, e.g. `2`.
+##   - keypress: Display pressed keys when composing a vi command.
+##   - progress: Progress bar for the current page loading.
+c.statusbar.widgets = ['keypress', 'url', 'scroll', 'progress']
+
+## Open new tabs (middleclick/ctrl+click) in the background.
+## Type: Bool
+# c.tabs.background = False
+
+## Mouse button with which to close tabs.
+## Type: String
+## Valid values:
+##   - right: Close tabs on right-click.
+##   - middle: Close tabs on middle-click.
+##   - none: Don't close tabs using the mouse.
+# c.tabs.close_mouse_button = 'middle'
+
+## How to behave when the close mouse button is pressed on the tab bar.
+## Type: String
+## Valid values:
+##   - new-tab: Open a new tab.
+##   - close-current: Close the current tab.
+##   - close-last: Close the last tab.
+##   - ignore: Don't do anything.
+# c.tabs.close_mouse_button_on_bar = 'new-tab'
+
+## Maximum stack size to remember for tab switches (-1 for no maximum).
+## Type: Int
+# c.tabs.focus_stack_size = 10
+
+## How to behave when the last tab is closed.
+## Type: String
+## Valid values:
+##   - ignore: Don't do anything.
+##   - blank: Load a blank page.
+##   - startpage: Load the start page.
+##   - default-page: Load the default page.
+##   - close: Close the window.
+# c.tabs.last_close = 'ignore'
+
+## When switching tabs, what input mode is applied.
+## Type: String
+## Valid values:
+##   - persist: Retain the current mode.
+##   - restore: Restore previously saved mode.
+##   - normal: Always revert to normal mode.
+# c.tabs.mode_on_change = 'normal'
+
+## Switch between tabs using the mouse wheel.
+## Type: Bool
+# c.tabs.mousewheel_switching = True
+
+## Position of new tabs opened from another tab. See
+## `tabs.new_position.stacking` for controlling stacking behavior.
+## Type: NewTabPosition
+## Valid values:
+##   - prev: Before the current tab.
+##   - next: After the current tab.
+##   - first: At the beginning.
+##   - last: At the end.
+# c.tabs.new_position.related = 'next'
+
+## Stack related tabs on top of each other when opened consecutively.
+## Only applies for `next` and `prev` values of
+## `tabs.new_position.related` and `tabs.new_position.unrelated`.
+## Type: Bool
+# c.tabs.new_position.stacking = True
+
+## Position of new tabs which are not opened from another tab. See
+## `tabs.new_position.stacking` for controlling stacking behavior.
+## Type: NewTabPosition
+## Valid values:
+##   - prev: Before the current tab.
+##   - next: After the current tab.
+##   - first: At the beginning.
+##   - last: At the end.
+# c.tabs.new_position.unrelated = 'last'
+
+## Force pinned tabs to stay at fixed URL.
+## Type: Bool
+# c.tabs.pinned.frozen = True
+
+## Shrink pinned tabs down to their contents.
+## Type: Bool
+# c.tabs.pinned.shrink = True
+
+## Position of the tab bar.
+## Type: Position
+## Valid values:
+##   - top
+##   - bottom
+##   - left
+##   - right
+# c.tabs.position = 'top'
+
+## Which tab to select when the focused tab is removed.
+## Type: SelectOnRemove
+## Valid values:
+##   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
+##   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
+##   - last-used: Select the previously selected tab.
+# c.tabs.select_on_remove = 'next'
+
+## When to show the tab bar.
+## Type: String
+## Valid values:
+##   - always: Always show the tab bar.
+##   - never: Always hide the tab bar.
+##   - multiple: Hide the tab bar if only one tab is open.
+##   - switching: Show the tab bar when switching tabs.
+c.tabs.show = 'switching'
+
+## Duration (in milliseconds) to show the tab bar before hiding it when
+## tabs.show is set to 'switching'.
+## Type: Int
+c.tabs.show_switching_delay = 800
+
+## Alignment of the text inside of tabs.
+## Type: TextAlignment
+## Valid values:
+##   - left
+##   - right
+##   - center
+# c.tabs.title.alignment = 'left'
+
+## Number of closed tabs (per window) and closed windows to remember for
+## :undo (-1 for no maximum).
+## Type: Int
+# c.tabs.undo_stack_size = 100
+
+## Wrap when changing tabs.
+## Type: Bool
+# c.tabs.wrap = True
+
+## What search to start when something else than a URL is entered.
+## Type: String
+## Valid values:
+##   - naive: Use simple/naive check.
+##   - dns: Use DNS requests (might be slow!).
+##   - never: Never search automatically.
+##   - schemeless: Always search automatically unless URL explicitly contains a scheme.
+# c.url.auto_search = 'naive'
+
+## Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
+## for a blank page.
+## Type: FuzzyUrl
+c.url.default_page = 'https://searx.rpaegelow.xyz'
+
+## URL segments where `:navigate increment/decrement` will search for a
+## number.
+## Type: FlagList
+## Valid values:
+##   - host
+##   - port
+##   - path
+##   - query
+##   - anchor
+# c.url.incdec_segments = ['path', 'query']
+
+## Open base URL of the searchengine if a searchengine shortcut is
+## invoked without parameters.
+## Type: Bool
+# c.url.open_base_url = False
+
+## Search engines which can be used via the address bar.  Maps a search
+## engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
+## placeholder. The placeholder will be replaced by the search term, use
+## `{{` and `}}` for literal `{`/`}` braces.  The following further
+## placeholds are defined to configure how special characters in the
+## search terms are replaced by safe characters (called 'quoting'):  *
+## `{}` and `{semiquoted}` quote everything except slashes; this is the
+## most   sensible choice for almost all search engines (for the search
+## term   `slash/and&amp` this placeholder expands to `slash/and%26amp`).
+## * `{quoted}` quotes all characters (for `slash/and&amp` this
+## placeholder   expands to `slash%2Fand%26amp`). * `{unquoted}` quotes
+## nothing (for `slash/and&amp` this placeholder   expands to
+## `slash/and&amp`).  The search engine named `DEFAULT` is used when
+## `url.auto_search` is turned on and something else than a URL was
+## entered to be opened. Other search engines can be used by prepending
+## the search engine name to the search term, e.g. `:open google
+## qutebrowser`.
+## Type: Dict
+c.url.searchengines = {'DEFAULT': 'https://searx.rpaegelow.xyz/search?q={}'}
+
+## Page(s) to open at the start.
+## Type: List of FuzzyUrl, or FuzzyUrl
+c.url.start_pages = ['https://searx.rpaegelow.xyz']
+
+## URL parameters to strip with `:yank url`.
+## Type: List of String
+# c.url.yank_ignored_parameters = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+
 ##########################################################################################
 #Privacy
 ##########################################################################################
@@ -1186,254 +1494,13 @@ c.input.spatial_navigation = False
 ## Type: Int
 # c.keyhint.radius = 6
 
-##########################################################################################
-#Bindings
-##########################################################################################
-
-## Aliases for commands. The keys of the given dictionary are the
-## aliases, while the values are the commands they map to.
-## Type: Dict
-c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save', 'wqa': 'quit --save'}
-
-## This setting can be used to map keys to other keys.
-## Type: Dict
-# c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>', '<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Ctrl-I>': '<Tab>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
-
-
-## How to open links in an existing instance if a new one is launched.
-## This happens when e.g. opening a link from a terminal. See
-## `new_instance_open_target_window` to customize in which window the
-## link is opened in.
-## Type: String
-## Valid values:
-##   - tab: Open a new tab in the existing window and activate the window.
-##   - tab-bg: Open a new background tab in the existing window and activate the window.
-##   - tab-silent: Open a new tab in the existing window without activating the window.
-##   - tab-bg-silent: Open a new background tab in the existing window without activating the window.
-##   - window: Open in a new window.
-##   - private-window: Open in a new private window.
-# c.new_instance_open_target = 'tab'
-
-## Which window to choose when opening links as new tabs. When
-## `new_instance_open_target` is set to `window`, this is ignored.
-## Type: String
-## Valid values:
-##   - first-opened: Open new tabs in the first (oldest) opened window.
-##   - last-opened: Open new tabs in the last (newest) opened window.
-##   - last-focused: Open new tabs in the most recently focused window.
-##   - last-visible: Open new tabs in the most recently visible window.
-# c.new_instance_open_target_window = 'last-focused'
-
-## Show a filebrowser in download prompts.
-## Type: Bool
-# c.prompt.filebrowser = True
-
 ## Rounding radius (in pixels) for the edges of prompts.
 ## Type: Int
 # c.prompt.radius = 8
 
-## Additional arguments to pass to Qt, without leading `--`. With
-## QtWebEngine, some Chromium arguments (see
-## https://peter.sh/experiments/chromium-command-line-switches/ for a
-## list) will work.
-## Type: List of String
-# c.qt.args = []
-
-## Force a Qt platform to use. This sets the `QT_QPA_PLATFORM`
-## environment variable and is useful to force using the XCB plugin when
-## running QtWebEngine on Wayland.
-## Type: String
-# c.qt.force_platform = None
-
-## Force a Qt platformtheme to use. This sets the `QT_QPA_PLATFORMTHEME`
-## environment variable which controls dialogs like the filepicker. By
-## default, Qt determines the platform theme based on the desktop
-## environment.
-## Type: String
-# c.qt.force_platformtheme = None
-
-## Force software rendering for QtWebEngine. This is needed for
-## QtWebEngine to work with Nouveau drivers and can be useful in other
-## scenarios related to graphic issues.
-## Type: String
-## Valid values:
-##   - software-opengl: Tell LibGL to use a software implementation of GL (`LIBGL_ALWAYS_SOFTWARE` / `QT_XCB_FORCE_SOFTWARE_OPENGL`)
-##   - qt-quick: Tell Qt Quick to use a software renderer instead of OpenGL. (`QT_QUICK_BACKEND=software`)
-##   - chromium: Tell Chromium to disable GPU support and use Skia software rendering instead. (`--disable-gpu`)
-##   - none: Don't force software rendering.
-# c.qt.force_software_rendering = 'none'
-
-## Turn on Qt HighDPI scaling. This is equivalent to setting
-## QT_AUTO_SCREEN_SCALE_FACTOR=1 or QT_ENABLE_HIGHDPI_SCALING=1 (Qt >=
-## 5.14) in the environment. It's off by default as it can cause issues
-## with some bitmap fonts. As an alternative to this, it's possible to
-## set font sizes and the `zoom.default` setting.
-## Type: Bool
-# c.qt.highdpi = False
-
-## When to use Chromium's low-end device mode. This improves the RAM
-## usage of renderer processes, at the expense of performance.
-## Type: String
-## Valid values:
-##   - always: Always use low-end device mode.
-##   - auto: Decide automatically (uses low-end mode with < 1 GB available RAM).
-##   - never: Never use low-end device mode.
-# c.qt.low_end_device_mode = 'auto'
-
-## Which Chromium process model to use. Alternative process models use
-## less resources, but decrease security and robustness. See the
-## following pages for more details:    -
-## https://www.chromium.org/developers/design-documents/process-models
-## - https://doc.qt.io/qt-5/qtwebengine-features.html#process-models
-## Type: String
-## Valid values:
-##   - process-per-site-instance: Pages from separate sites are put into separate processes and separate visits to the same site are also isolated.
-##   - process-per-site: Pages from separate sites are put into separate processes. Unlike Process per Site Instance, all visits to the same site will share an OS process. The benefit of this model is reduced memory consumption, because more web pages will share processes. The drawbacks include reduced security, robustness, and responsiveness.
-##   - single-process: Run all tabs in a single process. This should be used for debugging purposes only, and it disables `:open --private`.
-# c.qt.process_model = 'process-per-site-instance'
-
-## When/how to show the scrollbar.
-## Type: String
-## Valid values:
-##   - always: Always show the scrollbar.
-##   - never: Never show the scrollbar.
-##   - when-searching: Show the scrollbar when searching for text in the webpage. With the QtWebKit backend, this is equal to `never`.
-##   - overlay: Show an overlay scrollbar. With Qt < 5.11 or on macOS, this is unavailable and equal to `when-searching`; with the QtWebKit backend, this is equal to `never`. Enabling/disabling overlay scrollbars requires a restart.
-# c.scrolling.bar = 'overlay'
-
-## Enable smooth scrolling for web pages. Note smooth scrolling does not
-## work with the `:scroll-px` command.
-## Type: Bool
-# c.scrolling.smooth = False
-
-## When to find text on a page case-insensitively.
-## Type: IgnoreCase
-## Valid values:
-##   - always: Search case-insensitively.
-##   - never: Search case-sensitively.
-##   - smart: Search case-sensitively if there are capital characters.
-# c.search.ignore_case = 'smart'
-
-## Find text on a page incrementally, renewing the search for each typed
-## character.
-## Type: Bool
-# c.search.incremental = True
-
-## Wrap around at the top and bottom of the page when advancing through
-## text matches using `:search-next` and `:search-prev`.
-## Type: Bool
-# c.search.wrap = True
-
-## Name of the session to save by default. If this is set to null, the
-## session which was last loaded is saved.
-## Type: SessionName
-# c.session.default_name = None
-
-## Load a restored tab as soon as it takes focus.
-## Type: Bool
-# c.session.lazy_restore = False
-
-## Languages to use for spell checking. You can check for available
-## languages and install dictionaries using scripts/dictcli.py. Run the
-## script with -h/--help for instructions.
-## Type: List of String
-## Valid values:
-##   - af-ZA: Afrikaans (South Africa)
-##   - bg-BG: Bulgarian (Bulgaria)
-##   - ca-ES: Catalan (Spain)
-##   - cs-CZ: Czech (Czech Republic)
-##   - da-DK: Danish (Denmark)
-##   - de-DE: German (Germany)
-##   - el-GR: Greek (Greece)
-##   - en-AU: English (Australia)
-##   - en-CA: English (Canada)
-##   - en-GB: English (United Kingdom)
-##   - en-US: English (United States)
-##   - es-ES: Spanish (Spain)
-##   - et-EE: Estonian (Estonia)
-##   - fa-IR: Farsi (Iran)
-##   - fo-FO: Faroese (Faroe Islands)
-##   - fr-FR: French (France)
-##   - he-IL: Hebrew (Israel)
-##   - hi-IN: Hindi (India)
-##   - hr-HR: Croatian (Croatia)
-##   - hu-HU: Hungarian (Hungary)
-##   - id-ID: Indonesian (Indonesia)
-##   - it-IT: Italian (Italy)
-##   - ko: Korean
-##   - lt-LT: Lithuanian (Lithuania)
-##   - lv-LV: Latvian (Latvia)
-##   - nb-NO: Norwegian (Norway)
-##   - nl-NL: Dutch (Netherlands)
-##   - pl-PL: Polish (Poland)
-##   - pt-BR: Portuguese (Brazil)
-##   - pt-PT: Portuguese (Portugal)
-##   - ro-RO: Romanian (Romania)
-##   - ru-RU: Russian (Russia)
-##   - sh: Serbo-Croatian
-##   - sk-SK: Slovak (Slovakia)
-##   - sl-SI: Slovenian (Slovenia)
-##   - sq: Albanian
-##   - sr: Serbian
-##   - sv-SE: Swedish (Sweden)
-##   - ta-IN: Tamil (India)
-##   - tg-TG: Tajik (Tajikistan)
-##   - tr-TR: Turkish (Turkey)
-##   - uk-UA: Ukrainian (Ukraine)
-##   - vi-VN: Vietnamese (Viet Nam)
-# c.spellcheck.languages = []
-
 ## Padding (in pixels) for the statusbar.
 ## Type: Padding
 # c.statusbar.padding = {'top': 1, 'bottom': 1, 'left': 0, 'right': 0}
-
-## Position of the status bar.
-## Type: VerticalPosition
-## Valid values:
-##   - top
-##   - bottom
-# c.statusbar.position = 'bottom'
-
-## When to show the statusbar.
-## Type: String
-## Valid values:
-##   - always: Always show the statusbar.
-##   - never: Always hide the statusbar.
-##   - in-mode: Show the statusbar when in modes other than normal mode.
-# c.statusbar.show = 'always'
-
-## List of widgets displayed in the statusbar.
-## Type: List of String
-## Valid values:
-##   - url: Current page URL.
-##   - scroll: Percentage of the current page position like `10%`.
-##   - scroll_raw: Raw percentage of the current page position like `10`.
-##   - history: Display an arrow when possible to go back/forward in history.
-##   - tabs: Current active tab, e.g. `2`.
-##   - keypress: Display pressed keys when composing a vi command.
-##   - progress: Progress bar for the current page loading.
-# c.statusbar.widgets = ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
-
-## Open new tabs (middleclick/ctrl+click) in the background.
-## Type: Bool
-# c.tabs.background = False
-
-## Mouse button with which to close tabs.
-## Type: String
-## Valid values:
-##   - right: Close tabs on right-click.
-##   - middle: Close tabs on middle-click.
-##   - none: Don't close tabs using the mouse.
-# c.tabs.close_mouse_button = 'middle'
-
-## How to behave when the close mouse button is pressed on the tab bar.
-## Type: String
-## Valid values:
-##   - new-tab: Open a new tab.
-##   - close-current: Close the current tab.
-##   - close-last: Close the last tab.
-##   - ignore: Don't do anything.
-# c.tabs.close_mouse_button_on_bar = 'new-tab'
 
 ## Scaling factor for favicons in the tab bar. The tab size is unchanged,
 ## so big favicons also require extra `tabs.padding`.
@@ -1448,10 +1515,6 @@ c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save
 ##   - pinned: Show favicons only on pinned tabs.
 # c.tabs.favicons.show = 'always'
 
-## Maximum stack size to remember for tab switches (-1 for no maximum).
-## Type: Int
-# c.tabs.focus_stack_size = 10
-
 ## Padding (in pixels) for tab indicators.
 ## Type: Padding
 # c.tabs.indicator.padding = {'top': 2, 'bottom': 2, 'left': 0, 'right': 4}
@@ -1459,16 +1522,6 @@ c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save
 ## Width (in pixels) of the progress indicator (0 to disable).
 ## Type: Int
 # c.tabs.indicator.width = 3
-
-## How to behave when the last tab is closed.
-## Type: String
-## Valid values:
-##   - ignore: Don't do anything.
-##   - blank: Load a blank page.
-##   - startpage: Load the start page.
-##   - default-page: Load the default page.
-##   - close: Close the window.
-# c.tabs.last_close = 'ignore'
 
 ## Maximum width (in pixels) of tabs (-1 for no maximum). This setting
 ## only applies when tabs are horizontal. This setting does not apply to
@@ -1485,98 +1538,9 @@ c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save
 ## Type: Int
 # c.tabs.min_width = -1
 
-## When switching tabs, what input mode is applied.
-## Type: String
-## Valid values:
-##   - persist: Retain the current mode.
-##   - restore: Restore previously saved mode.
-##   - normal: Always revert to normal mode.
-# c.tabs.mode_on_change = 'normal'
-
-## Switch between tabs using the mouse wheel.
-## Type: Bool
-# c.tabs.mousewheel_switching = True
-
-## Position of new tabs opened from another tab. See
-## `tabs.new_position.stacking` for controlling stacking behavior.
-## Type: NewTabPosition
-## Valid values:
-##   - prev: Before the current tab.
-##   - next: After the current tab.
-##   - first: At the beginning.
-##   - last: At the end.
-# c.tabs.new_position.related = 'next'
-
-## Stack related tabs on top of each other when opened consecutively.
-## Only applies for `next` and `prev` values of
-## `tabs.new_position.related` and `tabs.new_position.unrelated`.
-## Type: Bool
-# c.tabs.new_position.stacking = True
-
-## Position of new tabs which are not opened from another tab. See
-## `tabs.new_position.stacking` for controlling stacking behavior.
-## Type: NewTabPosition
-## Valid values:
-##   - prev: Before the current tab.
-##   - next: After the current tab.
-##   - first: At the beginning.
-##   - last: At the end.
-# c.tabs.new_position.unrelated = 'last'
-
 ## Padding (in pixels) around text for tabs.
 ## Type: Padding
 # c.tabs.padding = {'top': 0, 'bottom': 0, 'left': 5, 'right': 5}
-
-## Force pinned tabs to stay at fixed URL.
-## Type: Bool
-# c.tabs.pinned.frozen = True
-
-## Shrink pinned tabs down to their contents.
-## Type: Bool
-# c.tabs.pinned.shrink = True
-
-## Position of the tab bar.
-## Type: Position
-## Valid values:
-##   - top
-##   - bottom
-##   - left
-##   - right
-# c.tabs.position = 'top'
-
-## Which tab to select when the focused tab is removed.
-## Type: SelectOnRemove
-## Valid values:
-##   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
-##   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
-##   - last-used: Select the previously selected tab.
-# c.tabs.select_on_remove = 'next'
-
-## When to show the tab bar.
-## Type: String
-## Valid values:
-##   - always: Always show the tab bar.
-##   - never: Always hide the tab bar.
-##   - multiple: Hide the tab bar if only one tab is open.
-##   - switching: Show the tab bar when switching tabs.
-# c.tabs.show = 'always'
-
-## Duration (in milliseconds) to show the tab bar before hiding it when
-## tabs.show is set to 'switching'.
-## Type: Int
-# c.tabs.show_switching_delay = 800
-
-## Open a new window for every tab.
-## Type: Bool
-# c.tabs.tabs_are_windows = False
-
-## Alignment of the text inside of tabs.
-## Type: TextAlignment
-## Valid values:
-##   - left
-##   - right
-##   - center
-# c.tabs.title.alignment = 'left'
 
 ## Format to use for the tab title. The following placeholders are
 ## defined:  * `{perc}`: Percentage as a string like `[10%]`. *
@@ -1603,82 +1567,15 @@ c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save
 ## Type: Bool
 # c.tabs.tooltips = True
 
-## Number of closed tabs (per window) and closed windows to remember for
-## :undo (-1 for no maximum).
-## Type: Int
-# c.tabs.undo_stack_size = 100
-
 ## Width (in pixels or as percentage of the window) of the tab bar if
 ## it's vertical.
 ## Type: PercOrInt
 # c.tabs.width = '20%'
 
-## Wrap when changing tabs.
-## Type: Bool
-# c.tabs.wrap = True
-
-## What search to start when something else than a URL is entered.
-## Type: String
-## Valid values:
-##   - naive: Use simple/naive check.
-##   - dns: Use DNS requests (might be slow!).
-##   - never: Never search automatically.
-##   - schemeless: Always search automatically unless URL explicitly contains a scheme.
-# c.url.auto_search = 'naive'
-
-## Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
-## for a blank page.
-## Type: FuzzyUrl
-# c.url.default_page = 'https://start.duckduckgo.com/'
-
-## URL segments where `:navigate increment/decrement` will search for a
-## number.
-## Type: FlagList
-## Valid values:
-##   - host
-##   - port
-##   - path
-##   - query
-##   - anchor
-# c.url.incdec_segments = ['path', 'query']
-
-## Open base URL of the searchengine if a searchengine shortcut is
-## invoked without parameters.
-## Type: Bool
-# c.url.open_base_url = False
-
-## Search engines which can be used via the address bar.  Maps a search
-## engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
-## placeholder. The placeholder will be replaced by the search term, use
-## `{{` and `}}` for literal `{`/`}` braces.  The following further
-## placeholds are defined to configure how special characters in the
-## search terms are replaced by safe characters (called 'quoting'):  *
-## `{}` and `{semiquoted}` quote everything except slashes; this is the
-## most   sensible choice for almost all search engines (for the search
-## term   `slash/and&amp` this placeholder expands to `slash/and%26amp`).
-## * `{quoted}` quotes all characters (for `slash/and&amp` this
-## placeholder   expands to `slash%2Fand%26amp`). * `{unquoted}` quotes
-## nothing (for `slash/and&amp` this placeholder   expands to
-## `slash/and&amp`).  The search engine named `DEFAULT` is used when
-## `url.auto_search` is turned on and something else than a URL was
-## entered to be opened. Other search engines can be used by prepending
-## the search engine name to the search term, e.g. `:open google
-## qutebrowser`.
-## Type: Dict
-# c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
-
-## Page(s) to open at the start.
-## Type: List of FuzzyUrl, or FuzzyUrl
-# c.url.start_pages = ['https://start.duckduckgo.com']
-
-## URL parameters to strip with `:yank url`.
-## Type: List of String
-# c.url.yank_ignored_parameters = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
-
 ## Hide the window decoration.  This setting requires a restart on
 ## Wayland.
 ## Type: Bool
-# c.window.hide_decoration = False
+c.window.hide_decoration =True
 
 ## Format to use for the window title. The same placeholders like for
 ## `tabs.title.format` are defined.
@@ -1709,6 +1606,19 @@ c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save
 ## Apply the zoom factor on a frame only to the text or to all content.
 ## Type: Bool
 # c.zoom.text_only = False
+
+##########################################################################################
+#Bindings
+##########################################################################################
+
+## Aliases for commands. The keys of the given dictionary are the
+## aliases, while the values are the commands they map to.
+## Type: Dict
+c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save', 'wqa': 'quit --save'}
+
+## This setting can be used to map keys to other keys.
+## Type: Dict
+# c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>', '<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Ctrl-I>': '<Tab>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
 
 ## Bindings for normal mode
 # config.bind("'", 'enter-mode jump_mark')
