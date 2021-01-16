@@ -433,6 +433,9 @@ c.url.start_pages = ['https://searx.rpaegelow.xyz']
 # Which method of blocking ads should be used.
 c.content.blocking.method = "both"
 
+# Don't load autoconfig
+config.load_autoconfig(False)
+
 ##########################################################################################
 #Privacy
 ##########################################################################################
@@ -567,7 +570,7 @@ c.content.headers.referer = 'same-domain'
 
 ## Enable host blocking.
 ## Type: Bool
-c.content.host_blocking.enabled = True
+c.content.blocking.enabled = True
 
 ## List of URLs of lists which contain hosts to block.  The file can be
 ## in one of the following formats:  - An `/etc/hosts`-like file - One
@@ -578,7 +581,7 @@ c.content.host_blocking.enabled = True
 ## The file `~/.config/qutebrowser/blocked-hosts` is always read if it
 ## exists.
 ## Type: List of Url
-c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+c.content.blocking.host.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
 
 ## Enable plugins in Web pages.
 ## Type: Bool
