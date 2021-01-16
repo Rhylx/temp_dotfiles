@@ -15,7 +15,7 @@ export EDITOR="vim"
 export TERMINAL="st"
 export READER="zathura"
 export BROWSER="lynx"
-export GBROWSER="qutebrowser"
+export GBROWSER="qutebrowser :adblock-update"
 
 # XDG paths :
 export XDG_CONFIG_HOME="$HOME/.config"
