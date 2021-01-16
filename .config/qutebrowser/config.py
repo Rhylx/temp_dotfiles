@@ -81,7 +81,7 @@ c.content.cache.size = None
 
 ## Allow websites to read canvas elements.
 ## Type: Bool
-c.content.canvas_reading = True
+c.content.canvas_reading = False
 
 ## Default encoding to use for websites. The encoding must be a string
 ## describing an encoding such as _utf-8_, _iso-8859-1_, etc.
@@ -567,6 +567,7 @@ c.content.headers.referer = 'same-domain'
 ## JavaScript requires a restart.
 ## Type: FormatString
 # c.content.headers.user_agent = 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}'
+c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0'
 
 ## Enable host blocking.
 ## Type: Bool
