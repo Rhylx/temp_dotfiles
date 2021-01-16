@@ -430,6 +430,9 @@ c.url.start_pages = ['https://searx.rpaegelow.xyz']
 ## Type: List of String
 # c.url.yank_ignored_parameters = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
 
+# Which method of blocking ads should be used.
+c.content.blocking.method = "both"
+
 ##########################################################################################
 #Privacy
 ##########################################################################################
