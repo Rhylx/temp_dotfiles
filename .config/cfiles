@@ -11,3 +11,9 @@ cfmc	${XDG_CONFIG_HOME}/ncmpcpp/config
 cfw	${XDG_CONFIG_HOME}/dwm/config.h
 cfb	${XDG_CONFIG_HOME}/dwmblocks/config.h
 cff	${XDG_CONFIG_HOME}/fontconfig/fonts.conf
+cfb	${XDG_CONFIG_HOME}/lynx/lynxrc
+cbf	${XDG_CONFIG_HOME}/lynx/lynx.lss
+cgb	${XDG_CONFIG_HOME}/qutebrowser/config.py
+clf	${XDG_CONFIG_HOME}/lf/lfrc
+cvp	${XDG_CONFIG_HOME}/mpv/mpv.conf
+cza	${XDG_CONFIG_HOME}/zathura/zathurarc

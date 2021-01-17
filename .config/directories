@@ -6,6 +6,6 @@ loc ${XDG_DATA_HOME}
 h   $HOME
 m  ${XDG_MUSIC_DIR}
 mn  /mnt
-p  ${XDG_PICTURES_DIR}
+pp  ${XDG_PICTURES_DIR}
 sc  $HOME/.local/scripts
-v  ${XDG_VIDEOS_DIR}
+vv  ${XDG_VIDEOS_DIR}
