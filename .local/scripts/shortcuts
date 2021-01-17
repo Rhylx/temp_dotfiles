@@ -1,5 +1,9 @@
 #!/bin/sh
 
+cdirs="${XDG_CONFIG_HOME}/directories"
+cfiles="${XDG_CONFIG_HOME}/cfiles"
+
+
 # Output locations. Unactivated progs should go to /dev/null.
 shell_shortcuts="${XDG_CONFIG_HOME}/shortcutrc"
 b_shortcuts="${XDG_CONFIG_HOME}/lynx/shortcuts.conf"
@@ -12,13 +16,13 @@ rm -f "$shell_shortcuts" "$b_shortcuts" "$gb_shortcuts" 2>/dev/null
 # printf "\" vim: filetype=vim\\n" > "$vifm_shortcuts"
 
 # Format the `directories` file in the correct syntax and sent it to all configs.
-eval "echo \"$(cat "${XDG_CONFIG_HOME}/directories")\"" | \
+eval "echo \"$(cat "$cdirs")\"" | \
 awk "!/^\s*#/ && !/^\s*\$/ {
   printf(\"%s() { cd %s && ls -a; }\n\",\$1,\$2)   >> \"$shell_shortcuts\" ;
   printf(\"config.bind(';%s', \42set downloads.location.directory %s ;; hint links download\42) \n\",\$1,\$2) >> \"$b_shortcuts\" }"
 
 # Format the `files` file in the correct syntax and sent it to configs.
-eval "echo \"$(cat "${XDG_CONFIG_HOME}/cfiles")\"" | \
+eval "echo \"$(cat "$cfiles")\"" | \
 awk "!/^\s*#/ && !/^\s*\$/ {
   printf(\"%s() { \$EDITOR %s; }\n\",\$1,\$2)  >> \"$shell_shortcuts\" ;
   printf(\"map %s shell \$EDITOR %s \n\",\$1,\$2)  >> \"$b_shortcuts\" ;
