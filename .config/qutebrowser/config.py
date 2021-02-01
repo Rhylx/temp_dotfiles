@@ -582,7 +582,7 @@ c.content.blocking.enabled = True
 ## The file `~/.config/qutebrowser/blocked-hosts` is always read if it
 ## exists.
 ## Type: List of Url
-c.content.blocking.host.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
 
 ## Enable plugins in Web pages.
 ## Type: Bool
