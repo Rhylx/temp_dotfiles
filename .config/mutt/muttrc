@@ -1,0 +1,13 @@
+# This are the common settings for all accounts :
+set mbox_type = Maildir
+bind index,pager gg noop
+bind index,pager g noop
+bind index,pager M noop
+bind index,pager C noop
+bind index gg first-entry
+unmailboxes *
+unalternates *
+unset signature
+unmacro index o
+
+
