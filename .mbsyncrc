@@ -1,10 +1,2 @@
-# Common settings for all email accounts :
-
-CertificateFile "/etc/ssl/certs/ca-certificates.crt"
-Subfolders Verbatim
-Expunge Both
-Create Both
-SyncState *
-MaxMessages 0
-ExpireUnread no
+# Mbsync config file :
 
