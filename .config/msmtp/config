@@ -1,7 +1,2 @@
-#Common settings for all email accounts :
-
-tls_trust_file	/etc/ssl/certs/ca-certificates.crt
-logfile "${XDG_CONFIG_HOME}"/msmtp/msmtp.log
-auth on
-
+#This is my msmtprc :
 
