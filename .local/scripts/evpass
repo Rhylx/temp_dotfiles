@@ -2,7 +2,7 @@
 
 find_key() {
 prefix=${PASSWORD_STORE_DIR}
-pass_path=$(find "$prefix""$1"/ -type f -name "$2*")
+pass_path=$(find "$prefix"/"$1"/ -type f -name "$2*")
 [ -z "$pass_path" ] && echo "No password found"
 pass_path=$(realpath --relative-base="$prefix" "$pass_path")
 pass_path=$(echo "$pass_path" | rev | cut -f 2- -d '.' | rev)
