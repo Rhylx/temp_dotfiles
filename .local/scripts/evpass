@@ -1,0 +1,25 @@
+#!/bin/sh
+
+find_key() {
+
+prefix=${PASSWORD_STORE_DIR}
+pass_path=$(find "$prefix"mail/ -type f -name "$1*")
+[ -z "$pass_path" ] && echo "No password found"
+pass_path=$(realpath --relative-base="$prefix" "$pass_path")
+pass_path=$(echo "$pass_path" | rev | cut -f 2- -d '.' | rev)
+pass "$pass_path"
+}
+
+open_error() {
+  echo "Can't open tomb, try to run pass open -d"
+  sudo swapon -a
+  exit 1
+}
+
+
+
+sudo swapoff -a
+pass open 2>/dev/null || open_error
+find_key "$@"
+pass close 2>/dev/null || echo "Tomb hasn't been closed properly"
+sudo swapon -a
