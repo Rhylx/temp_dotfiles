@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+open_error() {
+  echo "Can't open tomb, try to run pass open -d"
+  sudo swapon -a
+  exit 1
+}
+sudo swapoff -a
+pass open 2>/dev/null || open_error
+sleep(${1:-1200})
+pass close 2>/dev/null || echo "Tomb hasn't been closed properly"
+sudo swapon -a
