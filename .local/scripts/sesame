@@ -7,6 +7,4 @@ open_error() {
 }
 sudo swapoff -a
 pass open 2>/dev/null || open_error
-sleep(${1:-1200})
-pass close 2>/dev/null || echo "Tomb hasn't been closed properly"
-sudo swapon -a
+(sleep "${1:-1200}" ; pass close 2>/dev/null || echo "Tomb hasn't been closed properly" ; sudo swapon -a) &
